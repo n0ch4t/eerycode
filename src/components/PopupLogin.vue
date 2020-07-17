@@ -4,6 +4,7 @@
             <div class="text-center text-white font-size-30 mb-8">돌아오신것을 환영해요!</div>
             <div class="text-center font-size-20">다시 만나다니 너무 반가워요!</div>
         </div>
+        {{ islogon }}
         <div class="mt-20">
             <label for="userId" class="mb-5 d-block">
                 <span class="d-block">아이디</span>
@@ -13,9 +14,9 @@
                 <span class="d-block">비밀번호</span>
             </label>
             <input type="password" id="userPw" name="userPw" class="w-100 form-control bg-dark border-dark text-white mb-5" />
-            <div class="mb-15 text-info">비밀번호를 잊으셨나요?</div>
-            <button class="d-block w-100 btn btn-primary mb-5">로그인</button>
-            <span>계정이 필요한가요?<span class="text-info ml-5">가입하기</span></span>
+            <div class="mb-15 text-info cursor-pointer">비밀번호를 잊으셨나요?</div>
+            <button class="d-block w-100 btn btn-primary mb-5 cursor-pointer">로그인</button>
+            <span>계정이 필요한가요?<span class="text-info ml-5 cursor-pointer">가입하기</span></span>
         </div>
     </div>
 </template>

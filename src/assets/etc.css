@@ -22,10 +22,12 @@ input:focus {
 a {
 }
 
+.popup-login {
+    margin: 20vh auto auto;
+}
 .popup-login-container {
     width: 600px;
     padding: 30px;
-    margin: 30vh auto;
     background: rgb(54, 57, 63);
     border-radius: 0.25rem;
 }
@@ -101,4 +103,11 @@ a {
 
 .btn-primary {
     background-color: rgb(113, 137, 218);
+}
+
+
+/*** cursor ***/
+
+.cursor-pointer {
+    cursor: pointer;
 }
