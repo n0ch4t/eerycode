@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+}
+
+/*** basic ***/
+
+html {
+    height: 100% !important;
+    background: rgb(47, 49, 54);
+    color: rgb(128, 132, 137);
+}
+/*** input ***/
+input {
+    padding: 10px;
+    background: rgb(49, 51, 57);
+    border: none;
+}
+input:focus {
+    border: none;
+}
+/*** A ***/
+a {
+}
+
+.popup-login-container {
+    width: 600px;
+    padding: 30px;
+    margin: 30vh auto;
+    background: rgb(54, 57, 63);
+    border-radius: 0.25rem;
+}
+
+.home-logo {
+    display: block;
+    top: 10px;
+    left: 10px;
+}
+.d-block {
+    display: block;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+/*** text ***/
+.text-center {
+    text-align: center;
+}
+
+.text-white {
+    color: white;
+}
+.text-info {
+    color: rgb(114, 137, 218);
+}
+
+.font-size-30 {
+    font-size: 30px;
+}
+.font-size-20 {
+    font-size: 20px;
+}
+
+/*** margin ***/
+.mb-5 {
+    margin-bottom: 5px !important;
+}
+.mb-8 {
+    margin-bottom: 8px !important;
+}
+.mb-15 {
+    margin-bottom: 15px !important;
+}
+
+.mt-20 {
+    margin-top: 20px !important;
+}
+
+.ml-5 {
+    margin-left: 5px !important;
+}
+
+/*** button ***/
+.btn {
+    position: relative;
+    margin: 1px 1px;
+    padding: 8px 15px;
+    border-radius: 0.25rem;
+    color: rgb(255, 255, 255) !important;
+    font-size: 1rem;
+    transition: color 0.5s, background-color 0.5s;
+    letter-spacing: 0;
+    box-shadow: none;
+    border: none;
+    outline: none;
+}
+.btn:disabled {
+    opacity: 0.5;
+}
+
+.btn-primary {
+    background-color: rgb(113, 137, 218);
+}
