@@ -4,10 +4,10 @@
             <div class="font-size-30">EEryCode</div>
         </div>
         <transition name="login">
-            <popup-login v-if="isLogin" class="popup-login transition-dot-2" v-on:register="isLogin = !isLogin" />
+            <popup-login v-if="isLogin" class="popup-login transition-dot-5" v-on:register="isLogin = !isLogin" />
         </transition>
         <transition name="login">
-            <popup-register v-if="!isLogin" class="popup-register transition-dot-2" v-on:clickLogin="isLogin = !isLogin" />
+            <popup-register v-if="!isLogin" class="popup-register transition-dot-5" v-on:clickLogin="isLogin = !isLogin" />
         </transition>
     </div>
 </template>

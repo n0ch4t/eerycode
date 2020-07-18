@@ -199,10 +199,11 @@ a {
     clear: both;
 }
 
-.transition-dot-2 {
-    transition: all 0.2s;
+.transition-dot-5 {
+    transition: all 0.5s;
 }
 /*** transition ***/
+
 .login-enter-active {
     transform: translateY(5px);
 }
