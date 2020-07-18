@@ -14,10 +14,10 @@
                 <span class="d-block font-size-13">비밀번호</span>
             </label>
             <input type="password" id="userPw" name="userPw" class="w-100-per form-control bg-dark border-dark text-white mb-5" />
-            <div class="mb-15 text-info cursor-pointer font-size-13">비밀번호를 잊으셨나요?</div>
-            <button class="d-block w-100-per btn btn-primary mb-8 cursor-pointer">로그인</button>
+            <div class="mb-15 text-info cursor-pointer font-size-13" v-on:click="forgetPW">비밀번호를 잊으셨나요?</div>
+            <button class="d-block w-100-per btn btn-primary mb-8 cursor-pointer" v-on:click="clickLogin">로그인</button>
             <div class="font-size-13">
-                <span>계정이 필요한가요?<span class="text-info ml-5 cursor-pointer" v-on:click="clickRegister">가입하기</span></span>
+                <span>계정이 필요한가요?<span class="text-info ml-5 cursor-pointer" v-on:click="$emit('register')">가입하기</span></span>
             </div>
         </div>
     </div>
@@ -28,7 +28,12 @@ import { Vue, Component, Emit } from 'vue-property-decorator';
 
 @Component
 export default class PopupLogin extends Vue {
-    @Emit('register')
-    private clickRegister() {}
+    private clickLogin(): void {
+        alert('로그인 기능 미구현');
+    }
+
+    private forgetPW(): void {
+        alert('비밀번호 찾기 기능 미구현');
+    }
 }
 </script>

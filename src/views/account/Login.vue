@@ -1,6 +1,6 @@
 <template>
     <div style="width: 100%; height: 100%;">
-        <div class="home-logo">
+        <div class="home-logo cursor-pointer" v-on:click="clickHome">
             <div class="font-size-30">EEryCode</div>
         </div>
         <transition name="login">
@@ -9,7 +9,6 @@
         <transition name="login">
             <popup-register v-if="!isLogin" class="popup-register transition-dot-2" v-on:clickLogin="isLogin = !isLogin" />
         </transition>
-
     </div>
 </template>
 
@@ -23,5 +22,9 @@ import PopupRegister from '@/components/PopupRegister.vue';
 })
 export default class Home extends Vue {
     private isLogin: boolean = true;
+
+    private clickHome(): void {
+        this.$router.push('/');
+    }
 }
 </script>
