@@ -4,7 +4,6 @@
             <div class="text-center text-white font-size-24 font-weight-600 mb-8">돌아오신 것을 환영해요!</div>
             <div class="text-center font-size-16">다시 만나다니 너무 반가워요!</div>
         </div>
-        {{ islogon }}
         <div class="mt-20">
             <label for="userId" class="mb-5 d-block">
                 <span class="d-block font-size-13">아이디</span>
