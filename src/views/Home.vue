@@ -1,10 +1,15 @@
 <template>
-    <div>
+    <div style="width: 100%; height: 100%;">
         <div class="home-logo">
-            <h2>erryCode</h2>
+            <div class="font-size-30">EEryCode</div>
         </div>
-        <popup-login v-if="isLogin" class="popup-login" />
-        <popup-register v-if="true" class="popup-login" />
+        <transition name="login">
+            <popup-login v-if="isLogin" class="popup-login transition-dot-2" v-on:register="isLogin = !isLogin" />
+        </transition>
+        <transition name="login">
+            <popup-register v-if="!isLogin" class="popup-register transition-dot-2" v-on:clickLogin="isLogin = !isLogin" />
+        </transition>
+
     </div>
 </template>
 

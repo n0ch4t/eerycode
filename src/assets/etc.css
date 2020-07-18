@@ -2,31 +2,68 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'),
+        url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'),
+        url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+}
 /*** basic ***/
 
-html {
+html,
+body {
     height: 100% !important;
+    overflow: hidden;
+    margin: 0;
     background: rgb(47, 49, 54);
     color: rgb(128, 132, 137);
+    font-family: 'NanumBarunGothic', sans-serif;
+}
+#app {
+    height: 100%;
 }
 /*** input ***/
 input {
     padding: 10px;
     background: rgb(49, 51, 57);
-    border: none;
+    border: 1px solid rgb(35, 38, 42);
+    border-radius: 0.25rem;
+    font-size: 16px;
 }
 input:focus {
-    border: none;
+    border: 1px solid rgb(113, 137, 218);
+    outline: none;
+}
+
+select {
+    padding: 10px;
+    background-color: rgb(49, 51, 57);
+    border: 1px solid rgb(35, 38, 42);
+    border-radius: 0.25rem;
+    font-size: 16px;
 }
 /*** A ***/
 a {
 }
 
 .popup-login {
-    margin: 20vh auto auto;
+    top: calc(50% - 194px);
+    left: calc(50% - 240px);
+    margin: 0 auto;
+    position: absolute;
+}
+.popup-register {
+    top: calc(50% - 263px);
+    left: calc(50% - 240px);
+    margin: 0 auto;
+    position: absolute;
 }
 .popup-login-container {
-    width: 600px;
+    width: 480px;
+    height: auto;
     padding: 30px;
     background: rgb(54, 57, 63);
     border-radius: 0.25rem;
@@ -42,26 +79,59 @@ a {
 }
 
 .w-100 {
-    width: 100%;
+    width: 100% !important;
+}
+.w-120 {
+    width: 120px !important;
+}
+.w-154 {
+    width: 154px !important;
+}
+
+.w-30-per {
+    width: 25% !important;
+}
+.w-35-per {
+    width: 35% !important;
+}
+.w-100-per {
+    width: 100% !important;
 }
 
 /*** text ***/
 .text-center {
-    text-align: center;
+    text-align: center !important;
 }
 
 .text-white {
-    color: white;
+    color: white !important;
+}
+.text-red {
+    color: red !important;
 }
 .text-info {
-    color: rgb(114, 137, 218);
+    color: rgb(114, 137, 218) !important;
 }
-
-.font-size-30 {
-    font-size: 30px;
+.font-weight-600 {
+    font-weight: 600;
+}
+.font-size-13 {
+    font-size: 13px !important;
+}
+.font-size-15 {
+    font-size: 15px !important;
+}
+.font-size-16 {
+    font-size: 16px !important;
 }
 .font-size-20 {
-    font-size: 20px;
+    font-size: 20px !important;
+}
+.font-size-24 {
+    font-size: 24px !important;
+}
+.font-size-30 {
+    font-size: 30px !important;
 }
 
 /*** margin ***/
@@ -81,6 +151,12 @@ a {
 
 .ml-5 {
     margin-left: 5px !important;
+}
+.ml-13 {
+    margin-left: 13px !important;
+}
+.ml-2-per {
+    margin-left: 2% !important;
 }
 
 /*** button ***/
@@ -104,10 +180,88 @@ a {
 .btn-primary {
     background-color: rgb(113, 137, 218);
 }
-
-
+.btn-primary:hover {
+    background-color: rgb(90, 100, 200);
+}
 /*** cursor ***/
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+/*** float ***/
+.float-left {
+    float: left;
+}
+.clear-fix:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.transition-dot-2 {
+    transition: all 0.2s;
+}
+/*** transition ***/
+.login-enter-active {
+    transform: translateY(5px);
+}
+.login-enter,
+.login-leave-to {
+    transform: translateY(-30px) scale(1.2);
+    opacity: 0;
+}
+
+
+.register-date {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: stretch;
+}
+
+@media ( max-width: 800px ) {
+    .popup-login {
+        top: calc(50% - 194px);
+        left: calc(50% - 200px);
+        margin: 0 auto;
+        position: absolute;
+    }
+    .popup-register {
+        top: calc(50% - 263px);
+        left: calc(50% - 200px);
+        margin: 0 auto;
+        position: absolute;
+    }
+    .popup-login-container {
+        width: 400px;
+        height: auto;
+        padding: 30px;
+        background: rgb(54, 57, 63);
+        border-radius: 0.25rem;
+    }
+}
+@media ( max-width: 485px ) {
+    .popup-login {
+        top: 0;
+        left: 0;
+        margin: 0 auto;
+        position: absolute;
+    }
+    .popup-register {
+        top: 0;
+        left: 0;
+        margin: 0 auto;
+        position: absolute;
+    }
+    .popup-login-container {
+        width: 100%;
+        height: 100%;
+        min-width: 340px;
+        padding: 30px;
+        background: rgb(54, 57, 63);
+        border-radius: 0.25rem;
+    }
 }
