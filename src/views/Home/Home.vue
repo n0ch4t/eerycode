@@ -1,7 +1,11 @@
 <template>
-    <div class="text-center">
-        <div>홈페이지 영역</div>
-        <button class="btn btn-primary mt-20" v-on:click="clickLogin">일단은 버튼입니다. 로그인으로 이동</button>
+    <div style="height: 30000px">
+        <div class="home-logo cursor-pointer float-left" v-on:click="clickHome">
+            <div class="font-size-30">EEryCode</div>
+        </div>
+        <div class="float-right">
+        <button class="btn btn-primary mt-20 r-0 mr-20" v-on:click="clickLogin">로그인</button>
+        </div>
     </div>
 </template>
 

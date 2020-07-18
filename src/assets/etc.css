@@ -16,7 +16,7 @@
 html,
 body {
     height: 100% !important;
-    overflow: hidden;
+    overflow: auto;
     margin: 0;
     background: rgb(47, 49, 54);
     color: rgb(128, 132, 137);
@@ -71,13 +71,22 @@ a {
 
 .home-logo {
     display: block;
-    top: 10px;
-    left: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 .d-block {
     display: block;
 }
+/*** position ***/
+.l-0 {
+    left: 0 !important;
+}
 
+.r-0 {
+    right: 0 !important;
+}
+
+/*** width ***/
 .w-100 {
     width: 100% !important;
 }
@@ -158,6 +167,12 @@ a {
 .ml-2-per {
     margin-left: 2% !important;
 }
+.mr-5 {
+    margin-right: 5px !important;
+}
+.mr-20 {
+    margin-right: 20px !important;
+}
 
 /*** button ***/
 .btn {
@@ -193,6 +208,9 @@ a {
 .float-left {
     float: left;
 }
+.float-right {
+    float: right;
+}
 .clear-fix:after {
     content: '';
     display: block;
@@ -213,7 +231,6 @@ a {
     opacity: 0;
 }
 
-
 .register-date {
     display: flex;
     flex-direction: row;
@@ -223,7 +240,30 @@ a {
     align-content: stretch;
 }
 
-@media ( max-width: 800px ) {
+@media (max-width: 485px) {
+    .popup-login {
+        top: 0;
+        left: 0;
+        margin: 0 auto;
+        position: absolute;
+    }
+    .popup-register {
+        top: 0;
+        left: 0;
+        margin: 0 auto;
+        position: absolute;
+    }
+    .popup-login-container {
+        width: 100%;
+        height: 100%;
+        min-width: 340px;
+        padding: 30px;
+        background: rgb(54, 57, 63);
+        border-radius: 0.25rem;
+    }
+}
+
+@media (max-width: 800px) {
     .popup-login {
         top: calc(50% - 194px);
         left: calc(50% - 200px);
@@ -244,25 +284,100 @@ a {
         border-radius: 0.25rem;
     }
 }
-@media ( max-width: 485px ) {
-    .popup-login {
-        top: 0;
-        left: 0;
-        margin: 0 auto;
-        position: absolute;
+
+
+.bounce-in-top {
+    -webkit-animation: bounce-in-top 1.1s both;
+    animation: bounce-in-top 1.1s both;
+}
+/**
+ * ----------------------------------------
+ * animation bounce-in-top
+ * ----------------------------------------
+ */
+@-webkit-keyframes bounce-in-top {
+    0% {
+        -webkit-transform: translateY(-500px);
+        transform: translateY(-500px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+        opacity: 0;
     }
-    .popup-register {
-        top: 0;
-        left: 0;
-        margin: 0 auto;
-        position: absolute;
+    38% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+        opacity: 1;
     }
-    .popup-login-container {
-        width: 100%;
-        height: 100%;
-        min-width: 340px;
-        padding: 30px;
-        background: rgb(54, 57, 63);
-        border-radius: 0.25rem;
+    55% {
+        -webkit-transform: translateY(-65px);
+        transform: translateY(-65px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+    72% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+    81% {
+        -webkit-transform: translateY(-28px);
+        transform: translateY(-28px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+    90% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+    95% {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+}
+
+.slide-out-top {
+    -webkit-animation: slide-out-top 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: slide-out-top 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+/**
+ * ----------------------------------------
+ * animation slide-out-top
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-out-top {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
+    }
+}
+@keyframes slide-out-top {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
     }
 }
