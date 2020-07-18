@@ -3,11 +3,11 @@
         <div class="home-logo cursor-pointer" v-on:click="clickHome">
             <div class="font-size-30">EEryCode</div>
         </div>
-        <transition name="login">
-            <popup-login v-if="isLogin && loading" class="popup-login transition-dot-5" v-on:register="isLogin = !isLogin" />
+        <transition name="bounce">
+            <popup-login v-if="isLogin && loading" class="popup-login" v-on:register="isLogin = !isLogin" />
         </transition>
-        <transition name="login">
-            <popup-register v-if="!isLogin && loading" class="popup-register transition-dot-5" v-on:clickLogin="isLogin = !isLogin" />
+        <transition name="bounce">
+            <popup-register v-if="!isLogin && loading" class="popup-register" v-on:clickLogin="isLogin = !isLogin" />
         </transition>
     </div>
 </template>
