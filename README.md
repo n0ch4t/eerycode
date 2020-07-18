@@ -1,4 +1,4 @@
-# errycode
+# eerycode
 
 ## Project setup
 ```
