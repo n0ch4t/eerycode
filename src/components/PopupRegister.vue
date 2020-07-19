@@ -1,6 +1,7 @@
 <template>
     <div class="popup-login-container">
         <div>
+            <div class="popup-home text-center mb-15" v-on:click="clickHome"><img width="60" v-bind:src="logo"/></div>
             <div class="text-center text-white font-size-24 font-weight-600 mb-8">계정 만들기</div>
             <div class="mt-20">
                 <label for="email" class="mb-5 d-block">
@@ -32,7 +33,7 @@
                 <button class="d-block w-100-per btn btn-primary mb-8 cursor-pointer mb-5" v-on:click="clickRegister">계속하기</button>
                 <div class="text-info cursor-pointer mb-15 font-size-13" v-on:click="$emit('clickLogin')">이미 계정이 있으신가요?</div>
                 <div class="font-size-13"
-                    >등록하는 순간 ErryCode의<span class="text-info ml-5 cursor-pointer"> 서비스 이용 약관</span>과
+                    >등록하는 순간 EEryCode의<span class="text-info ml-5 cursor-pointer"> 서비스 이용 약관</span>과
                     <span class="text-info ml-5 cursor-pointer">개인정보 보호 정책</span>에 동의하게 됩니다.</div
                 >
             </div>
@@ -51,6 +52,13 @@ export default class PopupRegister extends Vue {
         day: 9,
     };
 
+    get logo(): any {
+        return require('../assets/img/logo.png');
+    }
+
+    private clickHome(): void {
+        this.$router.push('/');
+    }
     private clickRegister(): void {
         alert('가입 미구현');
     }

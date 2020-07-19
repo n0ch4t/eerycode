@@ -74,14 +74,16 @@ a {
     margin-top: 10px;
     margin-left: 10px;
 }
+
+/*** display ***/
 .d-block {
-    display: block;
+    display: block !important;
 }
+
 /*** position ***/
 .l-0 {
     left: 0 !important;
 }
-
 .r-0 {
     right: 0 !important;
 }
@@ -142,6 +144,9 @@ a {
 .font-size-30 {
     font-size: 30px !important;
 }
+.font-size-56 {
+    font-size: 56px !important;
+}
 
 /*** margin ***/
 .mb-5 {
@@ -198,6 +203,24 @@ a {
 .btn-primary:hover {
     background-color: rgb(90, 100, 200);
 }
+
+.btn-round {
+    position: relative;
+    margin: 1px 1px;
+    padding: 8px 15px;
+    border-radius: 2rem;
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    transition: color 0.5s, background-color 0.5s;
+    letter-spacing: 0;
+    box-shadow: none;
+    border: none;
+    outline: none;
+}
+.btn-round-white {
+    background-color: white;
+    color: rgb(90, 100, 200);
+}
 /*** cursor ***/
 
 .cursor-pointer {
@@ -226,12 +249,32 @@ a {
     align-content: stretch;
 }
 
+.dungdung {
+    animation: slide-right 120s infinite both;
+    z-index: 80;
+}
+.home-banner {
+    position: relative;
+    text-align: center;
+    color: white;
+    top: 200px;
+    z-index: 100;
+}
+.home-banner-top {
+    font-size: 56px;
+}
+.home-banner-desc {
+    font-size: 16px;
+}
+.popup-home {
+    display: none;
+}
+
 .bounce-enter-active {
-    animation: bounce-in-top .5s;
+    animation: bounce-in-top 0.5s;
 }
 .bounce-leave-to {
-    animation: slide-out-top .5s;
-
+    animation: slide-out-top 0.5s;
 }
 
 /*** animation ***/
@@ -284,7 +327,55 @@ a {
     }
 }
 
+@keyframes slide-right {
+    0% {
+        -webkit-transform: translateX(-5vw);
+        transform: translateX(-5vw);
+        opacity: 0;
+    }
+    40% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translateX(90vw);
+        transform: translateX(90vw);
+        opacity: 0;
+    }
+}
+
 /*** media query ***/
+
+@media (max-width: 800px) {
+    .popup-login {
+        top: calc(50% - 194px);
+        left: calc(50% - 200px);
+        margin: 0 auto;
+        position: absolute;
+    }
+    .popup-register {
+        top: calc(50% - 263px);
+        left: calc(50% - 200px);
+        margin: 0 auto;
+        position: absolute;
+    }
+    .popup-login-container {
+        width: 400px;
+        height: auto;
+        padding: 30px;
+        background: rgb(54, 57, 63);
+        border-radius: 0.25rem;
+    }
+    .home-banner-top {
+        font-size: 40px;
+    }
+    .popup-home {
+        display: block;
+    }
+}
+
 @media (max-width: 485px) {
     .popup-login {
         top: 0;
@@ -306,26 +397,7 @@ a {
         background: rgb(54, 57, 63);
         border-radius: 0.25rem;
     }
-}
-
-@media (max-width: 800px) {
-    .popup-login {
-        top: calc(50% - 194px);
-        left: calc(50% - 200px);
-        margin: 0 auto;
-        position: absolute;
-    }
-    .popup-register {
-        top: calc(50% - 263px);
-        left: calc(50% - 200px);
-        margin: 0 auto;
-        position: absolute;
-    }
-    .popup-login-container {
-        width: 400px;
-        height: auto;
-        padding: 30px;
-        background: rgb(54, 57, 63);
-        border-radius: 0.25rem;
+    .home-banner-top {
+        font-size: 35px;
     }
 }
