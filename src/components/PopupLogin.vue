@@ -7,13 +7,23 @@
         </div>
         <div class="mt-20">
             <label for="userId" class="mb-5 d-block">
-                <span class="d-block font-size-13">아이디</span>
+                <span class="d-block font-size-13"
+                    >아이디 <span class="text-red font-size-13" v-if="$v.param.userId.$error">{{ validationMessages.userId.required }}</span></span
+                >
             </label>
-            <input type="text" id="userId" name="userId" class="w-100-per form-control bg-dark border-dark mb-15 text-white" />
+            <input type="text" id="userId" name="userId" v-model="param.userId" class="w-100-per form-control bg-dark border-dark mb-15 text-white" />
             <label for="userPw" class="d-block mb-5">
-                <span class="d-block font-size-13">비밀번호</span>
+                <span class="d-block font-size-13"
+                    >비밀번호 <span class="text-red font-size-13" v-if="$v.param.userPw.$error">{{ validationMessages.userPw.required }}</span></span
+                >
             </label>
-            <input type="password" id="userPw" name="userPw" class="w-100-per form-control bg-dark border-dark text-white mb-5" />
+            <input
+                type="password"
+                id="userPw"
+                name="userPw"
+                v-model="param.userPw"
+                class="w-100-per form-control bg-dark border-dark text-white mb-5"
+            />
             <div class="mb-15 text-info cursor-pointer font-size-13" v-on:click="forgetPW">비밀번호를 잊으셨나요?</div>
             <button class="d-block w-100-per btn btn-primary mb-8 cursor-pointer" v-on:click="clickLogin">로그인</button>
             <div class="font-size-13">
@@ -24,23 +34,52 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Emit } from 'vue-property-decorator';
+import { Component, Emit, Mixins } from 'vue-property-decorator';
+import validationsMix from '@/shared/mixins/validationMix';
+import { validations, validationsMessage } from '@/components/viewData/PopupLogin';
+import { IBaseTooltip } from '@/shared/interface/ICommon';
 
-@Component
-export default class PopupLogin extends Vue {
+@Component({
+    validations: {
+        param: {
+            ...validations,
+        },
+    },
+})
+export default class PopupLogin extends Mixins(validationsMix) {
+    private param: any = {};
+
     get logo(): any {
         return require('../assets/img/logo.png');
+    }
+
+    get validationGroup(): any {
+        return this.$v.param;
+    }
+
+    get validationMessages(): any {
+        return validationsMessage;
+    }
+
+    get defaultToolTip(): IBaseTooltip {
+        return {
+            trigger: 'manual',
+            show: false,
+            placement: 'left',
+            content: '',
+            classes: ['popover', 'fade', 'in', 'left', 'top-minus-6', 'm-r-5'],
+        };
     }
 
     private clickHome(): void {
         this.$router.push('/');
     }
     private clickLogin(): void {
-        alert('로그인 기능 미구현');
+        this.$v.$touch();
     }
 
     private forgetPW(): void {
-        alert('비밀번호 찾기 기능 미구현');
+        this.$v.param.userId?.$touch();
     }
 }
 </script>

@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import Login from '../views/account/Login.vue';
-import Home from '../views/Home/Home.vue';
+import Login from '../../views/account/Login.vue';
+import Home from '../../views/Home/Home.vue';
 
 Vue.use(VueRouter);
 
-const routes: any[] = [
+const routes: RouteConfig[] = [
   {
     path: '/',
     name: 'Home',

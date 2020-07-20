@@ -28,7 +28,7 @@
         {
             "files": "*.ts",
             "options": {
-                "arrowParens": "avoid",
+                "arrowParens": "always",
                 "tabWidth": 2,
                 "printWidth": 150,
                 "semi": true
