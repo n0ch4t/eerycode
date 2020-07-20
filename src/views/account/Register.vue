@@ -4,17 +4,17 @@
             <div class="font-size-30">EEryCode</div>
         </div>
         <transition name="bounce">
-            <popup-login v-if="loading" class="popup-login" v-on:register="isLogin = !isLogin" />
+            <popup-register v-if="loading" class="popup-register" v-on:clickLogin="isLogin = !isLogin" />
         </transition>
     </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import PopupLogin from '@/components/PopupLogin.vue';
+import PopupRegister from '@/components/PopupRegister.vue';
 
 @Component({
-    components: { PopupLogin },
+    components: { PopupRegister },
 })
 export default class Home extends Vue {
     private loading: boolean = false;

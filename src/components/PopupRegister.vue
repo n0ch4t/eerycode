@@ -31,7 +31,7 @@
                     </select>
                 </div>
                 <button class="d-block w-100-per btn btn-primary mb-8 cursor-pointer mb-5" v-on:click="clickRegister">계속하기</button>
-                <div class="text-info cursor-pointer mb-15 font-size-13" v-on:click="$emit('clickLogin')">이미 계정이 있으신가요?</div>
+                <div class="text-info cursor-pointer mb-15 font-size-13" v-on:click="clickLogin">이미 계정이 있으신가요?</div>
                 <div class="font-size-13"
                     >등록하는 순간 EEryCode의<span class="text-info ml-5 cursor-pointer"> 서비스 이용 약관</span>과
                     <span class="text-info ml-5 cursor-pointer">개인정보 보호 정책</span>에 동의하게 됩니다.</div
@@ -58,6 +58,10 @@ export default class PopupRegister extends Vue {
 
     private clickHome(): void {
         this.$router.push('/');
+    }
+
+    private clickLogin(): void {
+        this.$router.push('/login');
     }
     private clickRegister(): void {
         alert('가입 미구현');

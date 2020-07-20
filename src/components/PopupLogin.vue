@@ -27,7 +27,7 @@
             <div class="mb-15 text-info cursor-pointer font-size-13" v-on:click="forgetPW">비밀번호를 잊으셨나요?</div>
             <button class="d-block w-100-per btn btn-primary mb-8 cursor-pointer" v-on:click="clickLogin">로그인</button>
             <div class="font-size-13">
-                <span>계정이 필요한가요?<span class="text-info ml-5 cursor-pointer" v-on:click="$emit('register')">가입하기</span></span>
+                <span>계정이 필요한가요?<span class="text-info ml-5 cursor-pointer" v-on:click="clickRegister">가입하기</span></span>
             </div>
         </div>
     </div>
@@ -73,6 +73,9 @@ export default class PopupLogin extends Mixins(validationsMix) {
 
     private clickHome(): void {
         this.$router.push('/');
+    }
+    private clickRegister(): void {
+        this.$router.push('/register');
     }
     private clickLogin(): void {
         this.$v.$touch();
