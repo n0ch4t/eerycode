@@ -23,6 +23,7 @@
                 name="userPw"
                 v-model="param.userPw"
                 class="w-100-per form-control bg-dark border-dark text-white mb-5"
+                v-on:keypress.enter="clickLogin"
             />
             <div class="mb-15 text-info cursor-pointer font-size-13" v-on:click="forgetPW">비밀번호를 잊으셨나요?</div>
             <button class="d-block w-100-per btn btn-primary mb-8 cursor-pointer" v-on:click="clickLogin">로그인</button>
@@ -79,8 +80,10 @@ export default class PopupLogin extends Mixins(validationsMix) {
     }
     private clickLogin(): void {
         this.$v.$touch();
+        if (!this.$v.$error) {
+            this.$router.push('/channels');
+        }
     }
-
     private forgetPW(): void {
         this.$v.param.userId?.$touch();
     }

@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from 'vue-router';
 import Login from '../../views/account/Login.vue';
 import Home from '../../views/Home/Home.vue';
 import Register from '../../views/account/Register.vue';
+import Channels from '@/views/Channel/Channels.vue';
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes: RouteConfig[] = [
     path: '/register',
     name: 'Register',
     component: Register,
+  },
+  {
+    path: '/channels',
+    name: 'Channels',
+    component: Channels,
   },
 ];
 
