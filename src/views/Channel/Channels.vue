@@ -12,17 +12,24 @@
             </div>
         </transition>
         <div class="channel-box">
-            <div class="guild-nav"> </div>
-            <div class="channel-nav"></div>
+            <div class="guild-nav"></div>
+            <div class="channel-nav text-center"><button class="btn btn-primary" v-on:click="logout">임시방편 로그아웃</button></div>
             <div class="chat-box">
                 <div class="chat-box-top">
-                    <div class="font-size-20 chat-box-title"># <span class="text-white font-size-16">일반</span></div>
+                    <div class="font-size-20 chat-box-title"># <span class="text-white font-size-16">일반</span><span class="ml-13 font-size-13">안녕하세요 테스트중인 사이트입니다.</span></div>
                 </div>
                 <div class="chat-box-content">
-                    <div class="mb-8 chat-msg" v-for="chat in chatlog">{{ chat }}</div>
+                    <div v-for="chat in chatlog">
+                        <div class="mb-5">
+                            <span class="chat-id text-info">{{ chat.split(':@')[0] }} </span>
+                        </div>
+                        <div class="mb-8 chat-msg text-white">{{ chat.split(':@')[1] }}</div>
+                    </div>
                 </div>
                 <div class="input-chat-box">
-                    <input class="input-chat" v-model="msg" v-on:keypress.enter="sendMessage" type="text" placeholder="#... 메시지 보내기" />
+                    <label>
+                        <input class="input-chat" v-model="msg" v-on:keypress.enter="sendMessage" type="text" placeholder="#... 메시지 보내기" />
+                    </label>
                 </div>
             </div>
         </div>
@@ -39,11 +46,17 @@ export default class Channels extends Vue {
     private logs: any = [];
     private msg: string = '';
     private chatlog: string[] = [];
+    private userId: string = '';
 
     get logo() {
         return require('../../assets/img/logo.png');
     }
     private mounted() {
+        const temp = localStorage.getItem('userId');
+        if (!temp) {
+            this.$router.push('/login');
+        }
+        this.userId = temp + '';
         setTimeout(
             (self: any) => {
                 self.isLoading = false;
@@ -52,6 +65,10 @@ export default class Channels extends Vue {
             this,
         );
         this.connect();
+    }
+    private logout(): void {
+        localStorage.removeItem('userId');
+        this.$router.push('/login');
     }
     private connect(): void {
         this.socket = new WebSocket('ws://eerycode.com:4002/ws');
@@ -66,7 +83,7 @@ export default class Channels extends Vue {
     }
 
     private sendMessage(): void {
-        this.socket.send(this.msg);
+        this.socket.send(this.userId + ':@' + this.msg);
         this.logs.push({ event: '메시지 전송', data: this.msg });
         this.msg = '';
     }
@@ -74,8 +91,7 @@ export default class Channels extends Vue {
         setTimeout(() => {
             const obj = document.querySelectorAll('.chat-box-content')[0];
             obj.scrollTo(0, obj.scrollHeight);
-        }, 100)
-
+        }, 100);
     }
 }
 </script>

@@ -133,7 +133,9 @@ a {
 .text-center {
     text-align: center !important;
 }
-
+.text-italic {
+    font-style: italic;
+}
 .text-white {
     color: white !important;
 }
@@ -298,6 +300,7 @@ a {
     align-items: stretch;
     align-content: stretch;
     width: 100%;
+    min-width: 800px;
     height: 100%;
 }
 .guild-nav {
@@ -312,6 +315,7 @@ a {
 .chat-box {
     overflow: hidden;
     width: calc(100% - 312px);
+    min-width: 400px;
     height: 100%;
     background: rgb(55, 57, 62);
 }
@@ -322,10 +326,11 @@ a {
     border-bottom: 1px solid rgb(44, 45, 49);
 }
 .chat-box-title {
-    padding: 10px;
+    padding: 15px;
 }
 
 .chat-box-content {
+    padding-top: 10px;
     padding-left: 20px;
     height: calc(100% - 109px) !important;
     overflow: scroll !important;
@@ -351,6 +356,18 @@ a {
     animation: fade-out 1s;
 }
 
+.fade-enter-active, .fade-leave-active {
+    transition-property: opacity;
+    transition-duration: .2s;
+}
+
+.fade-enter-active {
+    transition-delay: .2s;
+}
+
+.fade-enter, .fade-leave-active {
+    opacity: 0.5
+}
 /*** animation ***/
 @keyframes bounce-in-top {
     0% {

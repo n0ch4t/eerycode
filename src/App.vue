@@ -7,7 +7,9 @@
         </pre
             >
         </div>
-        <router-view />
+        <transition name="fade">
+            <router-view />
+        </transition>
     </div>
 </template>
 

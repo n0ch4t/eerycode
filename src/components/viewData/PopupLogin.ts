@@ -11,9 +11,9 @@ export const validations = {
 
 export const validationsMessage = {
   userId: {
-    required: '아이디를 입력해주세요.',
+    required: '- 필수 입력 칸이에요',
   },
   userPw: {
-    required: '비밀번호를 입력해주세요.',
+    required: '- 필수 입력 칸이에요',
   },
 };
