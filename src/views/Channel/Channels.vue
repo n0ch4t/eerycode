@@ -54,7 +54,7 @@ export default class Channels extends Vue {
         this.connect();
     }
     private connect(): void {
-        this.socket = new WebSocket('ws://localhost:8080/ws');
+        this.socket = new WebSocket('ws://eerycode.com:4002/ws');
         this.socket.onopen = () => {
             this.logs.push({ event: '연결 완료: ', data: 'ws://eerycode.com:4002/ws' });
             this.socket.onmessage = (evt: any) => {
@@ -71,8 +71,11 @@ export default class Channels extends Vue {
         this.msg = '';
     }
     private chatScrollDown(): void {
-        const obj = document.querySelectorAll('.chat-box-content')[0];
-        obj.scrollTo(0, obj.scrollHeight);
+        setTimeout(() => {
+            const obj = document.querySelectorAll('.chat-box-content')[0];
+            obj.scrollTo(0, obj.scrollHeight);
+        }, 100)
+
     }
 }
 </script>
