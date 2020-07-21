@@ -300,7 +300,6 @@ a {
     align-items: stretch;
     align-content: stretch;
     width: 100%;
-    min-width: 800px;
     height: 100%;
 }
 .guild-nav {
@@ -314,8 +313,8 @@ a {
 }
 .chat-box {
     overflow: hidden;
-    width: calc(100% - 312px);
-    min-width: 400px;
+    width: 100% !important;
+    min-width: 300px;
     height: 100%;
     background: rgb(55, 57, 62);
 }
@@ -465,6 +464,12 @@ a {
     .popup-home {
         display: block;
     }
+    .guild-nav {
+        width: 10px !important;
+    }
+    .channel-nav {
+        width: 50px !important;
+    }
 }
 
 @media (max-width: 485px) {
@@ -490,6 +495,12 @@ a {
     }
     .home-banner-top {
         font-size: 35px;
+    }
+    .guild-nav {
+        width: 10px !important;
+    }
+    .channel-nav {
+        width: 50px !important;
     }
 }
 
