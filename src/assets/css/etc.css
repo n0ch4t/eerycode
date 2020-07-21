@@ -34,7 +34,17 @@ body {
     line-height: 1.25em;
     -webkit-font-smoothing: subpixel-antialiased;
     -webkit-overflow-scrolling: touch;
-    overflow-x: hidden; }
+    overflow-x: hidden;
+}
+
+.no-drag {
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+
 /*** input ***/
 input {
     padding: 10px;
@@ -68,6 +78,11 @@ a {
     height: 100%;
     min-height: 100%;
     position: relative;
+}
+.content-body {
+    position: relative;
+    height: 100%;
+    z-index: 100;
 }
 .popup-login {
     top: calc(50% - 194px);
@@ -191,6 +206,9 @@ a {
 .ml-13 {
     margin-left: 13px !important;
 }
+.ml-45 {
+    margin-left: 45px !important;
+}
 .ml-2-per {
     margin-left: 2% !important;
 }
@@ -242,6 +260,9 @@ a {
 .btn-round-white {
     background-color: white;
     color: rgb(90, 100, 200);
+}
+.btn-round-white:hover {
+    background-color: rgb(190, 194, 196);
 }
 /*** cursor ***/
 
@@ -318,6 +339,11 @@ a {
     height: 100%;
     background: rgb(55, 57, 62);
 }
+.chat-logo {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 0.5rem;
+}
 .chat-box-top {
     top: 0;
     width: 100%;
@@ -332,13 +358,18 @@ a {
     padding-top: 10px;
     padding-left: 20px;
     height: calc(100% - 109px) !important;
-    overflow: scroll !important;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .input-chat-box {
     bottom: 0;
     padding: 10px;
     width: 100%;
+}
+.chat-id {
+    display: flex;
+    justify-content: left;
 }
 .input-chat {
     width: 100%;
@@ -355,17 +386,19 @@ a {
     animation: fade-out 1s;
 }
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
     transition-property: opacity;
-    transition-duration: .2s;
+    transition-duration: 0.1s;
 }
 
 .fade-enter-active {
-    transition-delay: .2s;
+    transition-delay: 0.1s;
 }
 
-.fade-enter, .fade-leave-active {
-    opacity: 0.5
+.fade-enter,
+.fade-leave-active {
+    opacity: 0;
 }
 /*** animation ***/
 @keyframes bounce-in-top {
@@ -419,12 +452,12 @@ a {
 
 @keyframes slide-right {
     0% {
-        -webkit-transform: translateX(-5vw);
-        transform: translateX(-5vw);
-        opacity: 0;
+        -webkit-transform: translateX(5vw);
+        transform: translateX(5vw);
+        opacity: 0.1;
     }
     40% {
-        opacity: 0.6;
+        opacity: 0.8;
     }
     90% {
         opacity: 0;
@@ -469,6 +502,9 @@ a {
     }
     .channel-nav {
         width: 50px !important;
+    }
+    .account-logo-text {
+        visibility: hidden;
     }
 }
 

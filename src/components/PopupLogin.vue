@@ -1,20 +1,21 @@
 <template>
     <div class="popup-login-container">
         <div>
-            <div class="popup-home text-center mb-15" v-on:click="clickHome"><img width="60" v-bind:src="logo"/></div>
+            <div class="popup-home text-center mb-15" v-on:click="clickHome"><img v-bind:src="logoText"/></div>
             <div class="text-center text-white font-size-24 font-weight-600 mb-8">돌아오신 것을 환영해요!</div>
             <div class="text-center font-size-16">다시 만나다니 너무 반가워요!</div>
         </div>
         <div class="mt-20">
             <label for="userId" class="mb-5 d-block">
-                <span class="d-block font-size-13" v-bind:class="{'text-red':$v.param.userId.$error}"
+                <span class="d-block font-size-13" v-bind:class="{ 'text-red': $v.param.userId.$error }"
                     >아이디 <span class="font-size-13 text-italic" v-if="$v.param.userId.$error">{{ validationMessages.userId.required }}</span></span
                 >
             </label>
             <input type="text" id="userId" name="userId" v-model="param.userId" class="w-100-per form-control bg-dark border-dark mb-15 text-white" />
             <label for="userPw" class="d-block mb-5">
-                <span class="d-block font-size-13" v-bind:class="{'text-red':$v.param.userPw.$error}"
-                    >비밀번호 <span class="font-size-13 text-italic" v-if="$v.param.userPw.$error">{{ validationMessages.userPw.required }}</span></span
+                <span class="d-block font-size-13" v-bind:class="{ 'text-red': $v.param.userPw.$error }"
+                    >비밀번호
+                    <span class="font-size-13 text-italic" v-if="$v.param.userPw.$error">{{ validationMessages.userPw.required }}</span></span
                 >
             </label>
             <input
@@ -29,7 +30,7 @@
             <button class="d-block w-100-per btn btn-primary mb-8 cursor-pointer" v-on:click="clickLogin">로그인</button>
             <div class="font-size-13">
                 <span>계정이 필요한가요?<span class="text-info ml-5 cursor-pointer" v-on:click="clickRegister">가입하기</span></span>
-                <br><span class="text-red">테스트 중이므로 아이디 비밀번호 아무거나 치고 로그인하면 됩니다.</span>
+                <br /><span class="text-red">테스트 중이므로 아이디 비밀번호 아무거나 치고 로그인하면 됩니다.</span>
             </div>
         </div>
     </div>
@@ -51,8 +52,8 @@ import { IBaseTooltip } from '@/shared/interface/ICommon';
 export default class PopupLogin extends Mixins(validationsMix) {
     private param: any = {};
 
-    get logo(): any {
-        return require('../assets/img/logo.png');
+    get logoText(): any {
+        return require('../assets/img/logotext.png');
     }
 
     get validationGroup(): any {

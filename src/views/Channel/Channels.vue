@@ -16,14 +16,20 @@
             <div class="channel-nav text-center"><button class="btn btn-primary" v-on:click="logout">임시방편 로그아웃</button></div>
             <div class="chat-box">
                 <div class="chat-box-top">
-                    <div class="font-size-20 chat-box-title"># <span class="text-white font-size-16">일반</span><span class="ml-13 font-size-13">안녕하세요 테스트중인 사이트입니다.</span></div>
+                    <div class="font-size-20 chat-box-title"
+                        ># <span class="text-white font-size-16">일반</span
+                        ><span class="ml-13 font-size-13">안녕하세요 테스트중인 사이트입니다.</span></div
+                    >
                 </div>
                 <div class="chat-box-content">
                     <div v-for="chat in chatlog">
-                        <div class="mb-5">
-                            <span class="chat-id text-info">{{ chat.split(':@')[0] }} </span>
+                        <div class="mb-5 chat-id">
+                            <img v-bind:src="logo" class="chat-logo" />
+                            <div>
+                                <span class="text-info ml-13">{{ chat.split(':@')[0] }} </span>
+                                <div class="mb-8 ml-13 chat-msg text-white">{{ chat.split(':@')[1] }}</div>
+                            </div>
                         </div>
-                        <div class="mb-8 chat-msg text-white">{{ chat.split(':@')[1] }}</div>
                     </div>
                 </div>
                 <div class="input-chat-box">
