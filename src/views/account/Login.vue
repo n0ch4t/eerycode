@@ -1,5 +1,5 @@
 <template>
-    <div style="overflow:hidden">
+    <div class="content-wrapper overflow-h">
         <div class="home-logo cursor-pointer" v-on:click="clickHome">
             <div class="font-size-30">EEryCode</div>
         </div>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="content-wrapper">
         <div style="position: fixed; width: 100%; height: 100%; z-index:60">
             <img style="width: auto; height: 100%; min-height: 1080px;" v-bind:src="img" />
         </div>

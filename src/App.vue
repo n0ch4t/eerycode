@@ -40,4 +40,5 @@ export default class App extends Vue {
 }
 </script>
 
-<style src="./assets/etc.css" />
+<style src="./assets/css/normalize.css" />
+<style src="./assets/css/etc.css" />
