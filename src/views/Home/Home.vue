@@ -1,23 +1,19 @@
 <template>
     <div class="content-wrapper">
-        <div style="position: fixed; width: 100%; height: 100%; z-index:60">
-            <img style="width: auto; height: 100%; min-height: 1080px;" v-bind:src="img" />
+        <div class="no-drag" style="position: fixed; width: 100%; height: 100%; z-index:60">
+            <img style="width: 100%; object-fit: cover; height: 100%; min-height: 1080px;" v-bind:src="bghome" />
         </div>
-        <div style="position: relative; z-index:80">
+        <div style="position: relative; z-index:80" class="no-drag">
             <div class="clear-fix">
                 <div class="home-logo cursor-pointer float-left">
-                    <div class="font-size-30">EEryCode</div>
+                    <img v-bind:src="logoText" />
                 </div>
                 <div class="float-right">
                     <button class="btn-round btn-round-white mt-20 r-0 mr-20" v-on:click="clickLogin">로그인</button>
                 </div>
             </div>
             <div style="margin-top: 20vh; position: absolute">
-                <img
-                    class="dungdung mt-20"
-                    width="100px"
-                    src="https://www.pinclipart.com/picdir/big/355-3559958_pusheencat-sticker-pusheen-valentines-day-clipart.png"
-                />
+                <img class="dungdung mt-20" width="100px" v-bind:src="pusheencat" />
             </div>
 
             <div class="home-banner">
@@ -38,8 +34,14 @@ import { url } from 'vuelidate/lib/validators';
 
 @Component
 export default class Home extends Vue {
-    get img() {
-        return require('../../assets/img/gurum.jpg');
+    get bghome(): any {
+        return require('../../assets/img/bghome.png');
+    }
+    get logoText(): any {
+        return require('../../assets/img/logotext.png');
+    }
+    get pusheencat(): any {
+        return require('../../assets/img/pusheencat1.png');
     }
     private clickLogin(): void {
         this.$router.push('/login');

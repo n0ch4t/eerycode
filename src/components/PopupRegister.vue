@@ -1,7 +1,7 @@
 <template>
     <div class="popup-login-container">
         <div>
-            <div class="popup-home text-center mb-15" v-on:click="clickHome"><img width="60" v-bind:src="logo"/></div>
+            <div class="popup-home text-center mb-15" v-on:click="clickHome"><img v-bind:src="logoText"/></div>
             <div class="text-center text-white font-size-24 font-weight-600 mb-8">계정 만들기</div>
             <div class="mt-20">
                 <label for="email" class="mb-5 d-block">
@@ -52,8 +52,8 @@ export default class PopupRegister extends Vue {
         day: 9,
     };
 
-    get logo(): any {
-        return require('../assets/img/logo.png');
+    get logoText(): any {
+        return require('../assets/img/logotext.png');
     }
 
     private clickHome(): void {
