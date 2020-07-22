@@ -9,7 +9,7 @@
                     <img v-bind:src="logoText" />
                 </div>
                 <div class="float-right">
-                    <button class="btn-round btn-round-white mt-20 r-0 mr-20" v-on:click="clickLogin">로그인</button>
+                    <button class="btn-round btn-round-white mt-20 r-0 mr-20" v-on:click="clickLogin">{{ isLogin? 'Open' : 'Login'}}</button>
                 </div>
             </div>
             <div style="margin-top: 20vh; position: absolute">
@@ -34,6 +34,8 @@ import { url } from 'vuelidate/lib/validators';
 
 @Component
 export default class Home extends Vue {
+    private isLogin: boolean = false;
+
     get bghome(): any {
         return require('../../assets/img/bghome.png');
     }
@@ -43,8 +45,16 @@ export default class Home extends Vue {
     get pusheencat(): any {
         return require('../../assets/img/pusheencat1.png');
     }
+
+    private mounted() {
+        const temp = localStorage.getItem('userId');
+        if (temp) {
+            this.isLogin = true;
+        }
+    }
+
     private clickLogin(): void {
-        this.$router.push('/login');
+        this.isLogin ? this.$router.push('/channels') : this.$router.push('/login');
     }
 }
 </script>

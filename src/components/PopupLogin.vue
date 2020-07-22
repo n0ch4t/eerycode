@@ -7,7 +7,7 @@
         </div>
         <div class="mt-20">
             <label for="userId" class="mb-5 d-block">
-                <span class="d-block font-size-13" v-bind:class="{'text-red':$v.param.userId.$error}"
+                <span class="d-block font-size-13" v-bind:class="{ 'text-red': $v.param.userId.$error }"
                     >아이디 <span class="font-size-13 text-italic" v-if="$v.param.userId.$error">{{ validationMessages.userId.required }}</span></span
                 >
             </label>
@@ -83,6 +83,13 @@ export default class PopupLogin extends Mixins(validationsMix) {
             content: '',
             classes: ['popover', 'fade', 'in', 'left', 'top-minus-6', 'm-r-5'],
         };
+    }
+
+    private mounted() {
+        const temp = localStorage.getItem('userId');
+        if (temp) {
+            this.$router.push('/channels');
+        }
     }
 
     private clickHome(): void {
