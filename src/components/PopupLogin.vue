@@ -1,7 +1,7 @@
 <template>
     <div class="popup-login-container">
         <div>
-            <div class="popup-home text-center mb-15" v-on:click="clickHome"><img width="60" v-bind:src="logo"/></div>
+            <div class="popup-home text-center mb-15" v-on:click="clickHome"><img width="60" v-bind:src="logoText"/></div>
             <div class="text-center text-white font-size-24 font-weight-600 mb-8">돌아오신 것을 환영해요!</div>
             <div class="text-center font-size-16">다시 만나다니 너무 반가워요!</div>
         </div>

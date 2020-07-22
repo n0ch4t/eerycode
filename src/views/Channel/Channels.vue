@@ -12,8 +12,20 @@
             </div>
         </transition>
         <div class="channel-box">
-            <div class="guild-nav"></div>
-            <div class="channel-nav text-center"><button class="btn btn-primary" v-on:click="logout">임시방편 로그아웃</button></div>
+            <div class="guild-nav">
+                <img v-bind:src="logo" class="guild-nav-icon mb-8 cursor-pointer"  alt="guild-"/>
+            </div>
+
+            <div class="channel-nav text-center">
+                <div class="channel-nav-top text-ellipsis">
+                    테스트 채널
+                </div>
+                <div class="channel-nav-content">
+                    <div class="channel-nav-name text-white text-ellipsis"># 일반</div>
+                </div>
+                <button class="btn btn-primary text-ellipsis" v-on:click="logout">Logout</button>
+            </div>
+
             <div class="chat-box">
                 <div class="chat-box-top">
                     <div class="font-size-20 chat-box-title"
@@ -23,10 +35,14 @@
                 </div>
                 <div class="chat-box-content">
                     <div v-for="chat in chatlog">
-                        <div class="mb-5">
-                            <span class="chat-id" v-bind:class="chat.split('c+')[1].split(':@')[0]">{{ chat.split('c+')[0] }} </span>
+                        <div class="mb-5 chat-id">
+                            <img v-bind:src="logo" class="chat-logo" />
+                            <div>
+                                <span class="chat-id ml-13" v-bind:class="chat.split('c+')[1].split(':@')[0]">{{ chat.split('c+')[0] }} </span>
+
+                                <div class="mb-8 ml-13 chat-msg text-white">{{ chat.split('c+')[1].split(':@')[1] }}</div>
+                            </div>
                         </div>
-                        <div class="mb-8 chat-msg text-white">{{ chat.split('c+')[1].split(':@')[1] }}</div>
                     </div>
                 </div>
                 <div class="input-chat-box">

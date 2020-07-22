@@ -1,5 +1,5 @@
 * {
-    box-sizing: border-box;
+    box-sizing: border-box !important;
 }
 
 @font-face {
@@ -16,6 +16,7 @@
 html,
 body,
 #app {
+    box-sizing: border-box !important;
     height: 100%;
     width: 100%;
     min-height: 100vh !important;
@@ -354,13 +355,50 @@ a {
     height: 100%;
 }
 .guild-nav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
     width: 72px !important;
     background-color: rgb(32, 34, 37);
 }
+.guild-nav-icon {
+    width: 60px;
+    padding: 10px;
+    border-radius: 2rem;
+}
 .channel-nav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
     width: 240px !important;
     height: 100% !important;
     background: rgb(47, 49, 54);
+}
+.channel-nav-top {
+    height: 48px;
+    text-align: left;
+    padding: 14px 16px;
+    color: white;
+    font-size: 16px;
+    border-bottom: 1px solid rgb(36, 41, 47);
+}
+.channel-nav-content {
+    height: 100%;
+    padding: 10px;
+}
+.channel-nav-name {
+    padding: 5px;
+    border-radius: 0.25rem;
+    text-align: left;
+}
+.channel-nav-name:hover {
+    background: rgb(55, 58, 62);
 }
 .chat-box {
     overflow: hidden;
@@ -372,7 +410,8 @@ a {
 .chat-logo {
     width: 40px !important;
     height: 40px !important;
-    border-radius: 0.5rem;
+    border-radius: 2rem;
+    background: rgb(44, 45, 49);
 }
 .chat-box-top {
     top: 0;
@@ -406,6 +445,17 @@ a {
     color: white;
 }
 
+.text-ellipsis {
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+/*
+*
+*  애니메이션 처리 !
+*
+ */
 .bounce-enter-active {
     animation: bounce-in-top 0.5s;
 }
@@ -528,6 +578,15 @@ a {
         display: block;
     }
     .guild-nav {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: stretch;
+        width: 10px !important;
+    }
+    .guild-nav-icon {
         width: 10px !important;
     }
     .channel-nav {

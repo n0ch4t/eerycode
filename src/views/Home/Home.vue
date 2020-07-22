@@ -9,7 +9,7 @@
                     <img v-bind:src="logoText" />
                 </div>
                 <div class="float-right">
-                    <button class="btn-round btn-round-white mt-20 r-0 mr-20" v-on:click="clickLogin">{{ isLogin? 'Open' : 'Login'}}</button>
+                    <button class="btn-round btn-round-white mt-20 r-0 mr-20" v-on:click="clickLogin">{{ isLogin ? 'Open' : 'Login' }}</button>
                 </div>
             </div>
             <div style="margin-top: 20vh; position: absolute">
@@ -29,8 +29,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Emit } from 'vue-property-decorator';
-import { url } from 'vuelidate/lib/validators';
+import { Vue, Component } from 'vue-property-decorator';
 
 @Component
 export default class Home extends Vue {
