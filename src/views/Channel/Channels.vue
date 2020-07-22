@@ -16,14 +16,17 @@
             <div class="channel-nav text-center"><button class="btn btn-primary" v-on:click="logout">임시방편 로그아웃</button></div>
             <div class="chat-box">
                 <div class="chat-box-top">
-                    <div class="font-size-20 chat-box-title"># <span class="text-white font-size-16">일반</span><span class="ml-13 font-size-13">안녕하세요 테스트중인 사이트입니다.</span></div>
+                    <div class="font-size-20 chat-box-title"
+                        ># <span class="text-white font-size-16">일반</span
+                        ><span class="ml-13 font-size-13">안녕하세요 테스트중인 사이트입니다.</span></div
+                    >
                 </div>
                 <div class="chat-box-content">
                     <div v-for="chat in chatlog">
                         <div class="mb-5">
-                            <span class="chat-id text-info">{{ chat.split(':@')[0] }} </span>
+                            <span class="chat-id" v-bind:class="chat.split('c+')[1].split(':@')[0]">{{ chat.split('c+')[0] }} </span>
                         </div>
-                        <div class="mb-8 chat-msg text-white">{{ chat.split(':@')[1] }}</div>
+                        <div class="mb-8 chat-msg text-white">{{ chat.split('c+')[1].split(':@')[1] }}</div>
                     </div>
                 </div>
                 <div class="input-chat-box">
@@ -47,6 +50,7 @@ export default class Channels extends Vue {
     private msg: string = '';
     private chatlog: string[] = [];
     private userId: string = '';
+    private userColor: string = '';
 
     get logo() {
         return require('../../assets/img/logo.png');
@@ -57,6 +61,8 @@ export default class Channels extends Vue {
             this.$router.push('/login');
         }
         this.userId = temp + '';
+        const color = localStorage.getItem('userColor');
+        this.userColor = color + '';
         setTimeout(
             (self: any) => {
                 self.isLoading = false;
@@ -83,7 +89,11 @@ export default class Channels extends Vue {
     }
 
     private sendMessage(): void {
-        this.socket.send(this.userId + ':@' + this.msg);
+        if (this.msg.trim().length <= 0) {
+            this.msg = '';
+            return;
+        }
+        this.socket.send(this.userId + 'c+' + this.userColor + ':@' + this.msg);
         this.logs.push({ event: '메시지 전송', data: this.msg });
         this.msg = '';
     }

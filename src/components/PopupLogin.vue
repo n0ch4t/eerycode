@@ -7,14 +7,15 @@
         </div>
         <div class="mt-20">
             <label for="userId" class="mb-5 d-block">
-                <span class="d-block font-size-13" v-bind:class="{'text-red':$v.param.userId.$error}"
+                <span class="d-block font-size-13" v-bind:class="{ 'text-red': $v.param.userId.$error }"
                     >아이디 <span class="font-size-13 text-italic" v-if="$v.param.userId.$error">{{ validationMessages.userId.required }}</span></span
                 >
             </label>
             <input type="text" id="userId" name="userId" v-model="param.userId" class="w-100-per form-control bg-dark border-dark mb-15 text-white" />
             <label for="userPw" class="d-block mb-5">
-                <span class="d-block font-size-13" v-bind:class="{'text-red':$v.param.userPw.$error}"
-                    >비밀번호 <span class="font-size-13 text-italic" v-if="$v.param.userPw.$error">{{ validationMessages.userPw.required }}</span></span
+                <span class="d-block font-size-13" v-bind:class="{ 'text-red': $v.param.userPw.$error }"
+                    >비밀번호
+                    <span class="font-size-13 text-italic" v-if="$v.param.userPw.$error">{{ validationMessages.userPw.required }}</span></span
                 >
             </label>
             <input
@@ -29,7 +30,7 @@
             <button class="d-block w-100-per btn btn-primary mb-8 cursor-pointer" v-on:click="clickLogin">로그인</button>
             <div class="font-size-13">
                 <span>계정이 필요한가요?<span class="text-info ml-5 cursor-pointer" v-on:click="clickRegister">가입하기</span></span>
-                <br><span class="text-red">테스트 중이므로 아이디 비밀번호 아무거나 치고 로그인하면 됩니다.</span>
+                <br /><span class="text-red">테스트 중이므로 아이디 비밀번호 아무거나 치고 로그인하면 됩니다.</span>
             </div>
         </div>
     </div>
@@ -50,7 +51,17 @@ import { IBaseTooltip } from '@/shared/interface/ICommon';
 })
 export default class PopupLogin extends Mixins(validationsMix) {
     private param: any = {};
-
+    private color: string[] = [
+        'text-cyan',
+        'text-info',
+        'text-red',
+        'text-gray',
+        'text-blue',
+        'text-orange',
+        'text-purple',
+        'text-brown',
+        'text-salmon',
+    ];
     get logo(): any {
         return require('../assets/img/logo.png');
     }
@@ -83,6 +94,8 @@ export default class PopupLogin extends Mixins(validationsMix) {
         this.$v.$touch();
         if (!this.$v.$error) {
             localStorage.setItem('userId', this.param.userId);
+            const idx = Math.floor(Math.random() * this.color.length);
+            localStorage.setItem('userColor', this.color[idx]);
             this.$router.push('/channels');
         }
     }

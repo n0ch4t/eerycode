@@ -34,7 +34,8 @@ body {
     line-height: 1.25em;
     -webkit-font-smoothing: subpixel-antialiased;
     -webkit-overflow-scrolling: touch;
-    overflow-x: hidden; }
+    overflow-x: hidden;
+}
 /*** input ***/
 input {
     padding: 10px;
@@ -144,6 +145,36 @@ a {
 }
 .text-info {
     color: rgb(114, 137, 218) !important;
+}
+.text-cyan {
+    color: #26c6da !important;
+}
+
+.text-yellow {
+    color: #f8c200 !important;
+}
+
+.text-gray {
+    color: #8f9eb5 !important;
+}
+
+.text-blue {
+    color: #42a5f5 !important;
+}
+
+.text-orange {
+    color: #ffb74d !important;
+}
+
+.text-purple {
+    color: #6b79c4 !important;
+}
+.text-brown {
+    color: #795548 !important;
+}
+
+.text-salmon {
+    color: #ee6e73 !important;
 }
 .font-weight-600 {
     font-weight: 600;
@@ -355,17 +386,19 @@ a {
     animation: fade-out 1s;
 }
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
     transition-property: opacity;
-    transition-duration: .2s;
+    transition-duration: 0.2s;
 }
 
 .fade-enter-active {
-    transition-delay: .2s;
+    transition-delay: 0.2s;
 }
 
-.fade-enter, .fade-leave-active {
-    opacity: 0.5
+.fade-enter,
+.fade-leave-active {
+    opacity: 0.5;
 }
 /*** animation ***/
 @keyframes bounce-in-top {

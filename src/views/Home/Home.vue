@@ -24,7 +24,7 @@
                 <div class="home-banner-top">말이 통하는 나만의 공간</div>
                 <div class="home-banner-desc mt-20"
                     ><span>학교 동아리, 게임 그룹, 세계 예술 감상 커뮤니티는 물론</span><br /><span
-                        >단짝 친구들과도 손쉽게 어울려보세요. Discord를 사용하면 더 쉽게, 매일 어울리고 이야기할 수 있어요.</span
+                        >단짝 친구들과도 손쉽게 어울려보세요. EErycord를 사용하면 더 쉽게, 매일 어울리고 이야기할 수 있어요.</span
                     ></div
                 >
             </div>
