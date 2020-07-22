@@ -36,8 +36,6 @@ body {
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
 }
-    overflow-x: hidden;
-}
 
 .no-drag {
     -ms-user-select: none;
