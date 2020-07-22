@@ -11,7 +11,7 @@
                 <label for="nickname" class="mb-5 d-block">
                     <span class="d-block font-size-13 ">사용자명</span>
                 </label>
-                <input type="text" id="nickname" name="nickname" class="w-100-per form-control bg-dark border-dark mb-15 text-white" />
+                <input type="password" id="nickname" name="nickname" class="w-100-per form-control bg-dark border-dark mb-15 text-white" />
                 <label for="password" class="mb-5 d-block">
                     <span class="d-block font-size-13">비밀번호</span>
                 </label>
