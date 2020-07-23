@@ -1,12 +1,12 @@
 <template>
     <div class="content-wrapper">
-        <div class="no-drag" style="position: fixed; width: 100%; height: 100%; z-index:60">
-            <img style="width: 100%; object-fit: cover; height: 100%; min-height: 1080px;" v-bind:src="bghome" />
+        <div class="no-drag bg-wrapper">
+            <img class="bg-img" v-bind:src="bghome" />
         </div>
         <div style="position: relative; z-index:80" class="no-drag">
             <div class="clear-fix">
                 <div class="home-logo cursor-pointer float-left">
-                    <img v-bind:src="logoText" />
+                    <img class="img-no-drag" v-bind:src="logoText" />
                 </div>
                 <div class="float-right">
                     <button class="btn-round btn-round-white mt-20 r-0 mr-20" v-on:click="clickLogin">{{ isLogin ? 'Open' : 'Login' }}</button>
