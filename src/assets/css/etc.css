@@ -3,13 +3,9 @@
 }
 
 @font-face {
-    font-family: 'NanumBarunGothic';
+    font-family: 'ibm';
     font-style: normal;
-    font-weight: 400;
-    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
-    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'),
-        url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'),
-        url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+    src: url('../font/IBMPlexSansKR-Regular.ttf');
 }
 /*** basic ***/
 
@@ -25,7 +21,7 @@ body,
     margin: 0;
     background: rgb(47, 49, 54);
     color: rgb(128, 132, 137);
-    font-family: 'NanumBarunGothic', sans-serif;
+    font-family: 'ibm', sans-serif;
 }
 body {
     padding: 0;
