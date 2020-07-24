@@ -13,7 +13,7 @@
         </transition>
         <div class="channel-box">
             <div class="guild-nav">
-                <img v-bind:src="logo" class="guild-nav-icon mb-8 cursor-pointer"  alt="guild-"/>
+                <img v-bind:src="logo" class="guild-nav-icon mb-8 cursor-pointer" alt="guild-" />
             </div>
 
             <div class="channel-nav text-center">
@@ -88,12 +88,13 @@ export default class Channels extends Vue {
         );
         this.connect();
     }
+    private getmsg(): void {}
     private logout(): void {
         localStorage.removeItem('userId');
         this.$router.push('/login');
     }
     private connect(): void {
-        this.socket = new WebSocket('ws://eerycode.com:4002/ws');
+        this.socket = new WebSocket('ws://localhost:4002/ws');
         this.socket.onopen = () => {
             this.logs.push({ event: '연결 완료: ', data: 'ws://eerycode.com:4002/ws' });
             this.socket.onmessage = (evt: any) => {
