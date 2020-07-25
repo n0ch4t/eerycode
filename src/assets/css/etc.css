@@ -158,12 +158,20 @@ a {
 }
 
 /*** text ***/
+.text-ellipsis {
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .text-center {
     text-align: center !important;
 }
 .text-italic {
     font-style: italic;
 }
+
 .text-white {
     color: white !important;
 }
@@ -203,6 +211,11 @@ a {
 .text-salmon {
     color: #ee6e73 !important;
 }
+
+.text-bold {
+    font-weight: bold;
+}
+
 .font-weight-600 {
     font-weight: 600;
 }
@@ -436,7 +449,6 @@ a {
 
 .chat-box-content {
     padding-top: 10px;
-    padding-left: 20px;
     height: calc(100% - 109px) !important;
     overflow-y: auto;
     overflow-x: hidden;
@@ -450,18 +462,17 @@ a {
 .chat-id {
     display: flex;
     justify-content: left;
+    height: 42px;
+    padding-left: 20px;
+}
+.chat-id:hover {
+    background-color: rgb(50, 53, 59);
 }
 .input-chat {
     width: 100%;
     color: white;
 }
 
-.text-ellipsis {
-    display: block;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
 /*
 *
 *  애니메이션 처리 !

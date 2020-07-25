@@ -29,17 +29,16 @@
             <div class="chat-box">
                 <div class="chat-box-top">
                     <div class="font-size-20 chat-box-title"
-                        ># <span class="text-white font-size-16">일반</span
-                        ><span class="ml-13 font-size-13">안녕하세요 테스트중인 사이트입니다.</span></div
+                        ># <span class="text-white font-size-20 font-weight-600">일반</span
+                        ><span class="ml-13 font-size-16">| 안녕하세요 테스트중인 사이트입니다.</span></div
                     >
                 </div>
                 <div class="chat-box-content">
                     <div v-for="chat in chatlog">
                         <div class="mb-5 chat-id">
-                            <img v-bind:src="logo" class="chat-logo" />
+                            <img v-bind:src="logo" class="chat-logo cursor-pointer" />
                             <div>
-                                <span class="chat-id ml-13" v-bind:class="chat.split('c+')[1].split(':@')[0]">{{ chat.split('c+')[0] }} </span>
-
+                                <span class="ml-13 cursor-pointer" v-bind:class="chat.split('c+')[1].split(':@')[0]">{{ chat.split('c+')[0] }} </span>
                                 <div class="mb-8 ml-13 chat-msg text-white">{{ chat.split('c+')[1].split(':@')[1] }}</div>
                             </div>
                         </div>
@@ -94,7 +93,7 @@ export default class Channels extends Vue {
         this.$router.push('/login');
     }
     private connect(): void {
-        this.socket = new WebSocket('ws://localhost:4002/ws');
+        this.socket = new WebSocket('ws://eerycode.com:4002/ws');
         this.socket.onopen = () => {
             this.logs.push({ event: '연결 완료: ', data: 'ws://eerycode.com:4002/ws' });
             this.socket.onmessage = (evt: any) => {
