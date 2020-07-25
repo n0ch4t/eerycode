@@ -1,1 +1,2 @@
 import './vuelidate';
+import './axios';

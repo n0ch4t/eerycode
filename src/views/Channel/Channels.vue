@@ -87,7 +87,8 @@ export default class Channels extends Vue {
         );
         this.connect();
     }
-    private getmsg(): void {}
+    private getmsg(): void {
+    }
     private logout(): void {
         localStorage.removeItem('userId');
         this.$router.push('/login');
