@@ -192,6 +192,9 @@ a {
 .text-gray {
     color: #8f9eb5 !important;
 }
+.text-dark-gray {
+    color: rgb(122, 122, 122);
+}
 
 .text-blue {
     color: #42a5f5 !important;

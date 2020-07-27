@@ -1,9 +1,13 @@
 module.exports = {
     devServer: {
         proxy: {
-            // proxy 설정 api
-            '/v1/*': {
+            '/api/*': {
                 target: 'http://www.eerycode.com:4002',
+                ws: true,
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': '',
+                },
             },
         },
     },

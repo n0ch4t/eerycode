@@ -38,8 +38,10 @@
                         <div class="mb-5 chat-id">
                             <img v-bind:src="logo" class="chat-logo cursor-pointer" />
                             <div>
-                                <span class="ml-13 cursor-pointer" v-bind:class="chat.split('c+')[1].split(':@')[0]">{{ chat.split('c+')[0] }} </span>
-                                <div class="mb-8 ml-13 chat-msg text-white">{{ chat.split('c+')[1].split(':@')[1] }}</div>
+                                <span class="ml-13 cursor-pointer" v-bind:class="chat.color"
+                                    >{{ chat.id }} <span class="text-dark-gray font-size-13">{{ formatDate(chat.time) }}</span></span
+                                >
+                                <div class="mb-8 ml-13 chat-msg text-white">{{ chat.content }}</div>
                             </div>
                         </div>
                     </div>
@@ -86,8 +88,13 @@ export default class Channels extends Vue {
             this,
         );
         this.connect();
+        this.getmsg();
     }
     private getmsg(): void {
+        this.$axios.get('/api/getmsg').then((rs: any) => {
+            this.chatlog = [...rs.data];
+        });
+        this.chatScrollDown();
     }
     private logout(): void {
         localStorage.removeItem('userId');
@@ -99,7 +106,7 @@ export default class Channels extends Vue {
             this.logs.push({ event: '연결 완료: ', data: 'ws://eerycode.com:4002/ws' });
             this.socket.onmessage = (evt: any) => {
                 this.logs.push({ event: '메세지 수신', data: evt.data });
-                this.chatlog.push(evt.data);
+                this.chatlog.push(JSON.parse(evt.data));
                 this.chatScrollDown();
             };
         };
@@ -110,7 +117,13 @@ export default class Channels extends Vue {
             this.msg = '';
             return;
         }
-        this.socket.send(this.userId + 'c+' + this.userColor + ':@' + this.msg);
+        const message: any = {
+            id: this.userId,
+            content: this.msg,
+            color: this.userColor,
+            time: new Date(),
+        };
+        this.socket.send(JSON.stringify(message));
         this.logs.push({ event: '메시지 전송', data: this.msg });
         this.msg = '';
     }
@@ -119,6 +132,43 @@ export default class Channels extends Vue {
             const obj = document.querySelectorAll('.chat-box-content')[0];
             obj.scrollTo(0, obj.scrollHeight);
         }, 100);
+    }
+
+    private formatDate(time: string): string {
+        const date: Date = new Date(time);
+        let returnDate: string = 'yyyy-MM-dd HH:mm:ss';
+        returnDate = returnDate
+            .replace('yyyy', date.getFullYear() + '')
+            .replace('MM', (date.getMonth() + 1).toString().padStart(2, '0'))
+            .replace(
+                'dd',
+                date
+                    .getDate()
+                    .toString()
+                    .padStart(2, '0'),
+            )
+            .replace(
+                'HH',
+                date
+                    .getHours()
+                    .toString()
+                    .padStart(2, '0'),
+            )
+            .replace(
+                'mm',
+                date
+                    .getMinutes()
+                    .toString()
+                    .padStart(2, '0'),
+            )
+            .replace(
+                'ss',
+                date
+                    .getSeconds()
+                    .toString()
+                    .padStart(2, '0'),
+            );
+        return returnDate;
     }
 }
 </script>
