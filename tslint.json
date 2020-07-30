@@ -5,7 +5,7 @@
         "exclude": ["node_modules/**"]
     },
     "rules": {
-        "indent": [true, "spaces", 2],
+        "indent": [true, "spaces", 4],
         "interface-name": false,
         "no-consecutive-blank-lines": false,
         "object-literal-sort-keys": false,

@@ -1,19 +1,19 @@
 <template>
     <div class="content-wrapper">
         <div class="no-drag bg-wrapper">
-            <img class="bg-img" v-bind:src="bghome" />
+            <img class="bg-img" v-bind:src="bghome" alt="bg" />
         </div>
         <div style="position: relative; z-index:80" class="no-drag">
             <div class="clear-fix">
                 <div class="home-logo cursor-pointer float-left">
-                    <img class="img-no-drag" v-bind:src="logoText" />
+                    <img class="img-no-drag" v-bind:src="logoText" alt="logo" />
                 </div>
                 <div class="float-right">
                     <button class="btn-round btn-round-white mt-20 r-0 mr-20" v-on:click="clickLogin">{{ isLogin ? 'Open' : 'Login' }}</button>
                 </div>
             </div>
             <div style="margin-top: 20vh; position: absolute">
-                <img class="dungdung mt-20" width="100px" v-bind:src="pusheencat" />
+                <img class="dungdung mt-20" width="100px" v-bind:src="pusheencat" alt="catflow" />
             </div>
 
             <div class="home-banner">
@@ -45,8 +45,8 @@ export default class Home extends Vue {
         return require('../../assets/img/pusheencat1.png');
     }
 
-    private mounted() {
-        const temp = localStorage.getItem('userId');
+    private mounted(): void {
+        const temp = sessionStorage.getItem('userId');
         if (temp) {
             this.isLogin = true;
         }
