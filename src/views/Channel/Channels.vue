@@ -35,7 +35,7 @@
                         ><span class="ml-13 font-size-16">| 사이버 범죄 신고 또한 112</span></div
                     >
                 </div>
-                <div class="chat-box-content" v-on:scroll="chatScroll">
+                <div class="chat-box-content" ref="ChatBox" v-on:scroll="chatScroll">
                     <div class="text-center">
                         <div id="loading" class="position-absolute" v-show="isChatLoading" />
                     </div>
@@ -62,10 +62,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Ref } from 'vue-property-decorator';
 
 @Component
 export default class Channels extends Vue {
+    @Ref('ChatBox') private readonly chatbox!: HTMLElement;
+
     private isLoading: boolean = true;
     private socket: any;
     private logs: any = [];
@@ -105,7 +107,7 @@ export default class Channels extends Vue {
         });
         this.chatScrollDown();
     }
-    private getmore(target: any): void {
+    private getmore(): void {
         if (!this.getting) {
             return;
         }
@@ -115,27 +117,33 @@ export default class Channels extends Vue {
         this.getting = false;
         this.isChatLoading = true;
         let height = 0;
-        this.$axios
-            .get(`/api/getmsgmore?limit=${this.chatlog.length}`)
-            .then((rs: any) => {
-                if (rs.data === null) {
-                    this.isMore = false;
-                    return;
-                }
-                this.chatlog = [...rs.data.reverse(), ...this.chatlog];
-                height = rs.data.length * 30;
-                target.scrollTop = height;
-            })
-            .finally(() => {
-                this.isChatLoading = false;
-                setTimeout(
-                    (self: any) => {
-                        self.getting = true;
-                    },
-                    500,
-                    this,
-                );
-            });
+        setTimeout(
+            (self: any) => {
+                self.$axios
+                    .get(`/api/getmsgmore?limit=${self.chatlog.length}`)
+                    .then((rs: any) => {
+                        if (rs.data === null) {
+                            self.isMore = false;
+                            return;
+                        }
+                        self.chatlog = [...rs.data.reverse(), ...self.chatlog];
+                        height = rs.data.length * 30;
+                        self.chatbox.scrollTop = height;
+                    })
+                    .finally(() => {
+                        self.isChatLoading = false;
+                        setTimeout(
+                            (t: any) => {
+                                t.getting = true;
+                            },
+                            200,
+                            self,
+                        );
+                    });
+            },
+            500,
+            this,
+        );
     }
     private logout(): void {
         localStorage.removeItem('userId');
@@ -182,7 +190,7 @@ export default class Channels extends Vue {
         const scroll: number = e.target.scrollTop;
         if (!(scroll - this.scrollPosition >= 0)) {
             if (scroll === 0) {
-                this.getmore(e.target);
+                this.getmore();
             }
         }
         this.scrollPosition = scroll;
