@@ -13,9 +13,9 @@
         </transition>
         <div class="channel-box">
             <div class="guild-nav">
-              <div class="guild-nav-item">
-                <img v-bind:src="logo" class="guild-nav-icon mb-8 cursor-pointer" alt="guild-" />
-              </div>
+                <div class="guild-nav-item">
+                    <img v-bind:src="logo" class="guild-nav-icon mb-8 cursor-pointer" alt="guild-" />
+                </div>
             </div>
 
             <div class="channel-nav text-center">
@@ -35,10 +35,13 @@
                         ><span class="ml-13 font-size-16">| 사이버 범죄 신고 또한 112</span></div
                     >
                 </div>
-                <div class="chat-box-content">
+                <div class="chat-box-content" v-on:scroll="chatScroll">
+                    <div class="text-center">
+                        <div id="loading" class="position-absolute" v-show="isChatLoading" />
+                    </div>
                     <div v-for="chat in chatlog">
                         <div class="mb-5 chat-id">
-                            <img v-bind:src="logo" class="chat-logo cursor-pointer" />
+                            <img v-bind:src="logo" class="chat-logo cursor-pointer" alt="logo" />
                             <div>
                                 <span class="ml-13 cursor-pointer" v-bind:class="chat.color"
                                     >{{ chat.id }} <span class="text-dark-gray font-size-13">{{ formatDate(chat.time) }}</span></span
@@ -70,6 +73,10 @@ export default class Channels extends Vue {
     private chatlog: string[] = [];
     private userId: string = '';
     private userColor: string = '';
+    private isMore: boolean = true;
+    private getting: boolean = true;
+    private isChatLoading: boolean = false;
+    private scrollPosition: number = 0;
 
     get logo() {
         return require('../../assets/img/logo.png');
@@ -94,9 +101,41 @@ export default class Channels extends Vue {
     }
     private getmsg(): void {
         this.$axios.get('/api/getmsg').then((rs: any) => {
-            this.chatlog = [...rs.data];
+            this.chatlog = [...rs.data.reverse()];
         });
         this.chatScrollDown();
+    }
+    private getmore(target: any): void {
+        if (!this.getting) {
+            return;
+        }
+        if (this.chatlog.length % 20 !== 0) {
+            this.isMore = false;
+        }
+        this.getting = false;
+        this.isChatLoading = true;
+        let height = 0;
+        this.$axios
+            .get(`/api/getmsgmore?limit=${this.chatlog.length}`)
+            .then((rs: any) => {
+                if (rs.data === null) {
+                    this.isMore = false;
+                    return;
+                }
+                this.chatlog = [...rs.data.reverse(), ...this.chatlog];
+                height = rs.data.length * 30;
+                target.scrollTop = height;
+            })
+            .finally(() => {
+                this.isChatLoading = false;
+                setTimeout(
+                    (self: any) => {
+                        self.getting = true;
+                    },
+                    500,
+                    this,
+                );
+            });
     }
     private logout(): void {
         localStorage.removeItem('userId');
@@ -136,6 +175,18 @@ export default class Channels extends Vue {
         }, 100);
     }
 
+    private chatScroll(e: any): void {
+        if (!this.isMore) {
+            return;
+        }
+        const scroll: number = e.target.scrollTop;
+        if (!(scroll - this.scrollPosition >= 0)) {
+            if (scroll === 0) {
+                this.getmore(e.target);
+            }
+        }
+        this.scrollPosition = scroll;
+    }
     private formatDate(time: string): string {
         const date: Date = new Date(time);
         let returnDate: string = 'yyyy-MM-dd HH:mm:ss';

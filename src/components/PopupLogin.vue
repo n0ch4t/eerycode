@@ -101,9 +101,9 @@ export default class PopupLogin extends Mixins(validationsMix) {
     private clickLogin(): void {
         this.$v.$touch();
         if (!this.$v.$error) {
-          localStorage.setItem('userId', this.param.userId);
+            localStorage.setItem('userId', this.param.userId);
             const idx = Math.floor(Math.random() * this.color.length);
-          localStorage.setItem('userColor', this.color[idx]);
+            localStorage.setItem('userColor', this.color[idx]);
             this.$router.push('/channels');
         }
     }
