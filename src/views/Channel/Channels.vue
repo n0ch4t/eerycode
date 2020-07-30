@@ -13,7 +13,9 @@
         </transition>
         <div class="channel-box">
             <div class="guild-nav">
+              <div class="guild-nav-item">
                 <img v-bind:src="logo" class="guild-nav-icon mb-8 cursor-pointer" alt="guild-" />
+              </div>
             </div>
 
             <div class="channel-nav text-center">
@@ -30,7 +32,7 @@
                 <div class="chat-box-top">
                     <div class="font-size-20 chat-box-title"
                         ># <span class="text-white font-size-20 font-weight-600">일반</span
-                        ><span class="ml-13 font-size-16">| 안녕하세요 테스트중인 사이트입니다.</span></div
+                        ><span class="ml-13 font-size-16">| 사이버 범죄 신고 또한 112</span></div
                     >
                 </div>
                 <div class="chat-box-content">
@@ -41,7 +43,7 @@
                                 <span class="ml-13 cursor-pointer" v-bind:class="chat.color"
                                     >{{ chat.id }} <span class="text-dark-gray font-size-13">{{ formatDate(chat.time) }}</span></span
                                 >
-                                <div class="mb-8 ml-13 chat-msg text-white">{{ chat.content }}</div>
+                                <div class="mb-8 ml-13 chat-msg text-white font-size-13">{{ chat.content }}</div>
                             </div>
                         </div>
                     </div>
@@ -73,12 +75,12 @@ export default class Channels extends Vue {
         return require('../../assets/img/logo.png');
     }
     private mounted() {
-        const temp = localStorage.getItem('userId');
+        const temp = sessionStorage.getItem('userId');
         if (!temp) {
             this.$router.push('/login');
         }
         this.userId = temp + '';
-        const color = localStorage.getItem('userColor');
+        const color = sessionStorage.getItem('userColor');
         this.userColor = color + '';
         setTimeout(
             (self: any) => {

@@ -392,8 +392,12 @@ a {
     width: 72px !important;
     background-color: rgb(32, 34, 37);
 }
+.guild-nav-item {
+
+}
 .guild-nav-icon {
-    width: 60px;
+    width: 100%;
+    height: auto;
     padding: 10px;
     border-radius: 2rem;
 }
@@ -465,7 +469,6 @@ a {
 .chat-id {
     display: flex;
     justify-content: left;
-    height: 42px;
     padding-left: 20px;
 }
 .chat-id:hover {
