@@ -564,8 +564,6 @@ a {
 
 @keyframes slide-right {
     0% {
-        -webkit-transform: translateX(5vw);
-        transform: translateX(5vw);
         opacity: 0.1;
     }
     40% {
@@ -577,6 +575,23 @@ a {
     100% {
         -webkit-transform: translateX(90vw);
         transform: translateX(90vw);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-left {
+    0% {
+        opacity: 0.1;
+    }
+    40% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translateX(3vw);
+        transform: translateX(3vw);
         opacity: 0;
     }
 }

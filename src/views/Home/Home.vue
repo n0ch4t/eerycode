@@ -12,8 +12,11 @@
                     <button class="btn-round btn-round-white mt-20 r-0 mr-20" v-on:click="clickLogin">{{ isLogin ? 'Open' : 'Login' }}</button>
                 </div>
             </div>
-            <div style="margin-top: 20vh; position: absolute">
-                <img class="dungdung mt-20" width="100px" v-bind:src="pusheencat" alt="catflow" />
+            <div class="position-absolute" style="left:4vw;">
+                <img class="dungdung img-no-drag" width="100px" v-bind:src="pusheencat" alt="catflow" />
+            </div>
+            <div class="position-absolute" style="margin-top: 350px; left:15vw;">
+                <img class="dungdung img-no-drag" width="100px" v-bind:src="pusheenwork" alt="catwork" />
             </div>
 
             <div class="home-banner">
@@ -43,6 +46,9 @@ export default class Home extends Vue {
     }
     get pusheencat(): any {
         return require('../../assets/img/pusheencat1.png');
+    }
+    get pusheenwork(): any {
+        return require('../../assets/img/pusheenwork.gif');
     }
 
     private mounted(): void {
