@@ -86,7 +86,7 @@ export default class PopupLogin extends Mixins(validationsMix) {
     }
 
     private mounted() {
-        const temp = sessionStorage.getItem('userId');
+        const temp = localStorage.getItem('userId');
         if (temp) {
             this.$router.push('/channels');
         }
@@ -101,9 +101,9 @@ export default class PopupLogin extends Mixins(validationsMix) {
     private clickLogin(): void {
         this.$v.$touch();
         if (!this.$v.$error) {
-            sessionStorage.setItem('userId', this.param.userId);
+          localStorage.setItem('userId', this.param.userId);
             const idx = Math.floor(Math.random() * this.color.length);
-            sessionStorage.setItem('userColor', this.color[idx]);
+          localStorage.setItem('userColor', this.color[idx]);
             this.$router.push('/channels');
         }
     }

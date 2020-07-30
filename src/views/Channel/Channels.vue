@@ -75,12 +75,12 @@ export default class Channels extends Vue {
         return require('../../assets/img/logo.png');
     }
     private mounted() {
-        const temp = sessionStorage.getItem('userId');
+        const temp = localStorage.getItem('userId');
         if (!temp) {
             this.$router.push('/login');
         }
         this.userId = temp + '';
-        const color = sessionStorage.getItem('userColor');
+        const color = localStorage.getItem('userColor');
         this.userColor = color + '';
         setTimeout(
             (self: any) => {

@@ -46,7 +46,7 @@ export default class Home extends Vue {
     }
 
     private mounted(): void {
-        const temp = sessionStorage.getItem('userId');
+        const temp = localStorage.getItem('userId');
         if (temp) {
             this.isLogin = true;
         }
