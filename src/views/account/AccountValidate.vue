@@ -10,10 +10,18 @@
                 </div>
             </div>
             <transition name="bounce">
-                <popup-login v-if="loading && $route.name === 'Login'" class="popup-login" v-on:register="isLogin = !isLogin" />
+                <popup-login
+                    v-if="loading && $route.name === 'Login'"
+                    class="popup-login"
+                    v-on:register="isLogin = !isLogin"
+                />
             </transition>
             <transition name="bounce">
-                <popup-register v-if="loading && $route.name !== 'Login'" class="popup-register" v-on:register="isLogin = !isLogin" />
+                <popup-register
+                    v-if="loading && $route.name !== 'Login'"
+                    class="popup-register"
+                    v-on:register="isLogin = !isLogin"
+                />
             </transition>
         </div>
     </div>

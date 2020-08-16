@@ -1,5 +1,5 @@
 {
-    "printWidth": 150,
+    "printWidth": 120,
     "tabWidth": 4,
     "singleQuote": true,
     "trailingComma": "all",
@@ -21,7 +21,7 @@
         {
             "files": "*.vue",
             "options": {
-                "printWidth": 150,
+                "printWidth": 120,
                 "arrowParens": "always"
             }
         },
@@ -30,7 +30,7 @@
             "options": {
                 "arrowParens": "always",
                 "tabWidth": 2,
-                "printWidth": 150,
+                "printWidth": 120,
                 "semi": true
             }
         }

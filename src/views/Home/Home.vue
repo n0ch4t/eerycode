@@ -9,7 +9,9 @@
                     <img class="img-no-drag" v-bind:src="logoText" alt="logo" />
                 </div>
                 <div class="float-right">
-                    <button class="btn-round btn-round-white mt-20 r-0 mr-20" v-on:click="clickLogin">{{ isLogin ? 'Open' : 'Login' }}</button>
+                    <button class="btn-round btn-round-white mt-20 r-0 mr-20" v-on:click="clickLogin">{{
+                        isLogin ? 'Open' : 'Login'
+                    }}</button>
                 </div>
             </div>
             <div class="position-absolute" style="left:4vw;">
@@ -23,7 +25,8 @@
                 <div class="home-banner-top">말이 통하는 나만의 공간</div>
                 <div class="home-banner-desc mt-20"
                     ><span>학교 동아리, 게임 그룹, 세계 예술 감상 커뮤니티는 물론</span><br /><span
-                        >단짝 친구들과도 손쉽게 어울려보세요. EErycord를 사용하면 더 쉽게, 매일 어울리고 이야기할 수 있어요.</span
+                        >단짝 친구들과도 손쉽게 어울려보세요. EErycord를 사용하면 더 쉽게, 매일 어울리고 이야기할 수
+                        있어요.</span
                     ></div
                 >
             </div>
@@ -52,10 +55,13 @@ export default class Home extends Vue {
     }
 
     private mounted(): void {
-        const temp = localStorage.getItem('userId');
-        if (temp) {
+        this.$axios.get('/api/check').then((rs: any) => {
+            this.$store.commit('setName', rs.data.name);
+            this.$store.commit('setGivenName', rs.data.given_name);
+            this.$store.commit('setPicture', rs.data.picture);
             this.isLogin = true;
-        }
+            return;
+        });
     }
 
     private clickLogin(): void {

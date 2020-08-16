@@ -8,14 +8,25 @@
         <div class="mt-20">
             <label for="userId" class="mb-5 d-block">
                 <span class="d-block font-size-13" v-bind:class="{ 'text-red': $v.param.userId.$error }"
-                    >아이디 <span class="font-size-13 text-italic" v-if="$v.param.userId.$error">{{ validationMessages.userId.required }}</span></span
+                    >아이디
+                    <span class="font-size-13 text-italic" v-if="$v.param.userId.$error">{{
+                        validationMessages.userId.required
+                    }}</span></span
                 >
             </label>
-            <input type="text" id="userId" name="userId" v-model="param.userId" class="w-100-per form-control bg-dark border-dark mb-15 text-white" />
+            <input
+                type="text"
+                id="userId"
+                name="userId"
+                v-model="param.userId"
+                class="w-100-per form-control bg-dark border-dark mb-15 text-white"
+            />
             <label for="userPw" class="d-block mb-5">
                 <span class="d-block font-size-13" v-bind:class="{ 'text-red': $v.param.userPw.$error }"
                     >비밀번호
-                    <span class="font-size-13 text-italic" v-if="$v.param.userPw.$error">{{ validationMessages.userPw.required }}</span></span
+                    <span class="font-size-13 text-italic" v-if="$v.param.userPw.$error">{{
+                        validationMessages.userPw.required
+                    }}</span></span
                 >
             </label>
             <input
@@ -27,10 +38,15 @@
                 v-on:keypress.enter="clickLogin"
             />
             <div class="mb-15 text-info cursor-pointer font-size-13" v-on:click="forgetPW">비밀번호를 잊으셨나요?</div>
-            <button class="d-block w-100-per btn btn-primary mb-8 cursor-pointer" v-on:click="clickLogin">로그인</button>
+            <a v-bind:href="loginUrl" class="d-block w-100-per btn btn-primary mb-8 cursor-pointer text-center"
+                >구글 계정으로 로그인</a
+            >
             <div class="font-size-13">
-                <span>계정이 필요한가요?<span class="text-info ml-5 cursor-pointer" v-on:click="clickRegister">가입하기</span></span>
-                <br /><span class="text-red">테스트 중이므로 아이디 비밀번호 아무거나 치고 로그인하면 됩니다.</span>
+                <span
+                    >계정이 필요한가요?<span class="text-info ml-5 cursor-pointer" v-on:click="clickRegister"
+                        >가입하기</span
+                    ></span
+                >
             </div>
         </div>
     </div>
@@ -51,6 +67,7 @@ import { IBaseTooltip } from '@/shared/interface/ICommon';
 })
 export default class PopupLogin extends Mixins(validationsMix) {
     private param: any = {};
+    private loginUrl: string = '';
     private color: string[] = [
         'text-cyan',
         'text-info',
@@ -86,18 +103,30 @@ export default class PopupLogin extends Mixins(validationsMix) {
     }
 
     private mounted() {
-        const temp = localStorage.getItem('userId');
-        if (temp) {
+        this.$axios.get('/api/check').then((rs: any) => {
+            this.$store.commit('setAuth', {
+                name: rs.data.name,
+                givenName: rs.data.given_name,
+                picture: rs.data.picture,
+            });
+
             this.$router.push('/channels');
-        }
+            return;
+        });
+        const url: string = '/api/login';
+        this.$axios.get(url).then((rs: any) => {
+            this.loginUrl = rs.data;
+        });
     }
 
     private clickHome(): void {
         this.$router.push('/');
     }
+
     private clickRegister(): void {
         this.$router.push('/register');
     }
+
     private clickLogin(): void {
         this.$v.$touch();
         if (!this.$v.$error) {
@@ -107,6 +136,7 @@ export default class PopupLogin extends Mixins(validationsMix) {
             this.$router.push('/channels');
         }
     }
+
     private forgetPW(): void {
         this.$v.param.userId?.$touch();
     }

@@ -19,9 +19,7 @@
             </div>
 
             <div class="channel-nav text-center">
-                <div class="channel-nav-top text-ellipsis">
-                    테스트 채널
-                </div>
+                <div class="channel-nav-top text-ellipsis"> 테스트 채널 {{ this.$store.getters.getGivenName }} </div>
                 <div class="channel-nav-content">
                     <div class="channel-nav-name text-white text-ellipsis"># 일반</div>
                 </div>
@@ -44,7 +42,8 @@
                             <img v-bind:src="logo" class="chat-logo cursor-pointer" alt="logo" />
                             <div>
                                 <span class="ml-13 cursor-pointer" v-bind:class="chat.color"
-                                    >{{ chat.id }} <span class="text-dark-gray font-size-13">{{ formatDate(chat.time) }}</span></span
+                                    >{{ chat.id }}
+                                    <span class="text-dark-gray font-size-13">{{ formatDate(chat.time) }}</span></span
                                 >
                                 <div class="mb-8 ml-13 chat-msg text-white font-size-13">{{ chat.content }}</div>
                             </div>
@@ -53,7 +52,13 @@
                 </div>
                 <div class="input-chat-box">
                     <label>
-                        <input class="input-chat" v-model="msg" v-on:keypress.enter="sendMessage" type="text" placeholder="#... 메시지 보내기" />
+                        <input
+                            class="input-chat"
+                            v-model="msg"
+                            v-on:keypress.enter="sendMessage"
+                            type="text"
+                            placeholder="#... 메시지 보내기"
+                        />
                     </label>
                 </div>
             </div>
@@ -68,7 +73,7 @@ import { Vue, Component, Ref } from 'vue-property-decorator';
 export default class Channels extends Vue {
     @Ref('ChatBox') private readonly chatbox!: HTMLElement;
 
-    private isLoading: boolean = true;
+    private isLoading: boolean = false;
     private socket: any;
     private logs: any = [];
     private msg: string = '';
@@ -83,30 +88,31 @@ export default class Channels extends Vue {
     get logo() {
         return require('../../assets/img/logo.png');
     }
+
     private mounted() {
-        const temp = localStorage.getItem('userId');
-        if (!temp) {
-            this.$router.push('/login');
-        }
-        this.userId = temp + '';
-        const color = localStorage.getItem('userColor');
-        this.userColor = color + '';
-        setTimeout(
-            (self: any) => {
-                self.isLoading = false;
-            },
-            500,
-            this,
-        );
-        this.connect();
-        this.getmsg();
+        this.$axios
+            .get('/api/check')
+            .then((rs: any) => {
+                this.$store.commit('setAuth', {
+                    name: rs.data.name,
+                    givenName: rs.data.given_name,
+                    picture: rs.data.picture,
+                });
+            })
+            .catch((e: any) => {
+                this.$router.push('/login');
+            });
+        // this.connect();
+        // this.getmsg();
     }
+
     private getmsg(): void {
         this.$axios.get('/api/getmsg').then((rs: any) => {
             this.chatlog = [...rs.data.reverse()];
         });
         this.chatScrollDown();
     }
+
     private getmore(): void {
         if (!this.getting) {
             return;
@@ -145,10 +151,13 @@ export default class Channels extends Vue {
             this,
         );
     }
+
     private logout(): void {
-        localStorage.removeItem('userId');
+        this.$store.commit('setAuth', {});
+        this.$axios.get('/api/logout');
         this.$router.push('/login');
     }
+
     private connect(): void {
         this.socket = new WebSocket('ws://eerycode.com:4002/ws');
         this.socket.onopen = () => {
@@ -176,6 +185,7 @@ export default class Channels extends Vue {
         this.logs.push({ event: '메시지 전송', data: this.msg });
         this.msg = '';
     }
+
     private chatScrollDown(): void {
         setTimeout(() => {
             const obj = document.querySelectorAll('.chat-box-content')[0];
@@ -195,6 +205,7 @@ export default class Channels extends Vue {
         }
         this.scrollPosition = scroll;
     }
+
     private formatDate(time: string): string {
         const date: Date = new Date(time);
         let returnDate: string = 'yyyy-MM-dd HH:mm:ss';
