@@ -311,7 +311,11 @@ a {
 .btn-primary:hover {
     background-color: rgb(90, 100, 200);
 }
-
+.btn-logout {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
 .btn-round {
     position: relative;
     margin: 1px 1px;
@@ -411,6 +415,7 @@ a {
     border-radius: 2rem;
 }
 .channel-nav {
+    position: relative;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -430,8 +435,7 @@ a {
     border-bottom: 1px solid rgb(36, 41, 47);
 }
 .channel-nav-content {
-    height: 100%;
-    padding: 10px;
+    padding: 5px;
 }
 .channel-nav-name {
     padding: 5px;
@@ -441,6 +445,11 @@ a {
 .channel-nav-name:hover {
     background: rgb(55, 58, 62);
 }
+
+.channel-nav-select {
+    background: rgb(66, 69, 66) !important;
+}
+
 .chat-box {
     overflow: hidden;
     width: 100% !important;

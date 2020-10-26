@@ -21,9 +21,22 @@
             <div class="channel-nav text-center">
                 <div class="channel-nav-top text-ellipsis"> 테스트 채널 {{ this.$store.getters.getGivenName }} </div>
                 <div class="channel-nav-content">
-                    <div class="channel-nav-name text-white text-ellipsis"># 일반</div>
+                    <div
+                        class="channel-nav-name text-white text-ellipsis"
+                        v-bind:class="{ 'channel-nav-select': currentRoom == 1 }"
+                        v-on:click="goChannel('1')"
+                        ># 일반</div
+                    >
                 </div>
-                <button class="btn btn-primary text-ellipsis" v-on:click="logout">Logout</button>
+                <div class="channel-nav-content">
+                    <div
+                        class="channel-nav-name text-white text-ellipsis"
+                        v-bind:class="{ 'channel-nav-select': currentRoom == 2 }"
+                        v-on:click="goChannel('2')"
+                        ># 테스트용</div
+                    >
+                </div>
+                <button class="btn btn-primary text-ellipsis btn-logout" v-on:click="logout">Logout</button>
             </div>
 
             <div class="chat-box">
@@ -39,11 +52,13 @@
                     </div>
                     <div v-for="chat in chatlog">
                         <div class="mb-5 chat-id">
-                            <img v-bind:src="logo" class="chat-logo cursor-pointer" alt="logo" />
+                            <img v-bind:src="chat.user.picture" class="chat-logo cursor-pointer" alt="logo" />
                             <div>
                                 <span class="ml-13 cursor-pointer" v-bind:class="chat.color"
-                                    >{{ chat.id }}
-                                    <span class="text-dark-gray font-size-13">{{ formatDate(chat.time) }}</span></span
+                                    >{{ chat.user.given_name }}
+                                    <span class="text-dark-gray font-size-13">{{
+                                        formatDate(chat.created_at)
+                                    }}</span></span
                                 >
                                 <div class="mb-8 ml-13 chat-msg text-white font-size-13">{{ chat.content }}</div>
                             </div>
@@ -84,12 +99,14 @@ export default class Channels extends Vue {
     private getting: boolean = true;
     private isChatLoading: boolean = false;
     private scrollPosition: number = 0;
+    private currentRoom: string = '0';
 
     get logo() {
         return require('../../assets/img/logo.png');
     }
 
     private mounted() {
+        this.currentRoom = this.$route.params.room_id;
         this.$axios
             .get('/api/check')
             .then((rs: any) => {
@@ -102,7 +119,7 @@ export default class Channels extends Vue {
             .catch((e: any) => {
                 this.$router.push('/login');
             });
-        // this.connect();
+        this.connect();
         // this.getmsg();
     }
 
@@ -152,6 +169,13 @@ export default class Channels extends Vue {
         );
     }
 
+    private goChannel(num: string): void {
+        if (num === this.currentRoom) {
+            return;
+        }
+        window.location.href = 'http://eerycode.com/channels/' + num;
+    }
+
     private logout(): void {
         this.$store.commit('setAuth', {});
         this.$axios.get('/api/logout');
@@ -159,7 +183,7 @@ export default class Channels extends Vue {
     }
 
     private connect(): void {
-        this.socket = new WebSocket('ws://eerycode.com:4002/ws');
+        this.socket = new WebSocket(`ws://eerycode.com:4002/ws/${this.currentRoom}`);
         this.socket.onopen = () => {
             this.logs.push({ event: '연결 완료: ', data: 'ws://eerycode.com:4002/ws' });
             this.socket.onmessage = (evt: any) => {
@@ -167,6 +191,12 @@ export default class Channels extends Vue {
                 this.chatlog.push(JSON.parse(evt.data));
                 this.chatScrollDown();
             };
+        };
+
+        this.socket.onerror = () => {
+            alert('뻘짓 NONO ! ');
+            this.$router.push('/login');
+            return;
         };
     }
 
@@ -176,10 +206,8 @@ export default class Channels extends Vue {
             return;
         }
         const message: any = {
-            id: this.userId,
+            room_id: this.currentRoom,
             content: this.msg,
-            color: this.userColor,
-            time: new Date(),
         };
         this.socket.send(JSON.stringify(message));
         this.logs.push({ event: '메시지 전송', data: this.msg });

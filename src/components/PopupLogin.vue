@@ -103,20 +103,24 @@ export default class PopupLogin extends Mixins(validationsMix) {
     }
 
     private mounted() {
-        this.$axios.get('/api/check').then((rs: any) => {
-            this.$store.commit('setAuth', {
-                name: rs.data.name,
-                givenName: rs.data.given_name,
-                picture: rs.data.picture,
-            });
+        this.$axios
+            .get('/api/check')
+            .then((rs: any) => {
+                this.$store.commit('setAuth', {
+                    name: rs.data.name,
+                    givenName: rs.data.given_name,
+                    picture: rs.data.picture,
+                });
 
-            this.$router.push('/channels');
-            return;
-        });
-        const url: string = '/api/login';
-        this.$axios.get(url).then((rs: any) => {
-            this.loginUrl = rs.data;
-        });
+                this.$router.push('/channels');
+                return;
+            })
+            .catch((e: any) => {
+                const url: string = '/api/login';
+                this.$axios.get(url).then((rs: any) => {
+                    this.loginUrl = rs.data;
+                });
+            });
     }
 
     private clickHome(): void {

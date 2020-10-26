@@ -24,6 +24,10 @@ const routes: RouteConfig[] = [
   },
   {
     path: '/channels',
+    redirect: { path: '/channels/1' },
+  },
+  {
+    path: '/channels/:room_id',
     name: 'Channels',
     component: Channels,
   },
