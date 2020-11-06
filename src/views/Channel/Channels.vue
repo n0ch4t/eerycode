@@ -100,6 +100,7 @@ export default class Channels extends Vue {
     private isChatLoading: boolean = false;
     private scrollPosition: number = 0;
     private currentRoom: string = '0';
+    private apiURL: string = process.env.VUE.APP.AG_API_URL || 'localhost';
 
     get logo() {
         return require('../../assets/img/logo.png');
@@ -173,7 +174,7 @@ export default class Channels extends Vue {
         if (num === this.currentRoom) {
             return;
         }
-        window.location.href = 'http://eerycode.com/channels/' + num;
+        window.location.href = `http://${this.apiURL}/channels/${num}`;
     }
 
     private logout(): void {
@@ -183,9 +184,9 @@ export default class Channels extends Vue {
     }
 
     private connect(): void {
-        this.socket = new WebSocket(`ws://eerycode.com:4002/ws/${this.currentRoom}`);
+        this.socket = new WebSocket(`wss://${this.apiURL}:4002/ws/${this.currentRoom}`);
         this.socket.onopen = () => {
-            this.logs.push({ event: '연결 완료: ', data: 'ws://eerycode.com:4002/ws' });
+            this.logs.push({ event: '연결 완료: ', data: `wss://${this.apiURL}:4002/ws` });
             this.socket.onmessage = (evt: any) => {
                 this.logs.push({ event: '메세지 수신', data: evt.data });
                 this.chatlog.push(JSON.parse(evt.data));
