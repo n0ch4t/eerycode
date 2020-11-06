@@ -100,7 +100,8 @@ export default class Channels extends Vue {
     private isChatLoading: boolean = false;
     private scrollPosition: number = 0;
     private currentRoom: string = '0';
-    private apiURL: string = process.env.VUE.APP.AG_API_URL || 'localhost';
+    private apiURL: string = process.env.VUE_APP_AG_API_URL || 'localhost';
+    private wsURL: string = process.env.VUE_APP_AG_WS_URL || 'localhost';
 
     get logo() {
         return require('../../assets/img/logo.png');
