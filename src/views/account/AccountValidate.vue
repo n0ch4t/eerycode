@@ -51,7 +51,7 @@ export default class AccountValidate extends Vue {
     }
 
     private clickHome(): void {
-        this.$router.push('/');
+        this.$router.replace('/');
     }
 }
 </script>

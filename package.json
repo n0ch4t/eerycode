@@ -9,18 +9,23 @@
         "lint": "vue-cli-service lint"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@types/vuelidate": "^0.7.13",
         "axios": "^0.19.2",
         "core-js": "^3.6.5",
         "v-tooltip": "^2.0.3",
         "vue": "^2.6.12",
         "vue-class-component": "^7.2.6",
+        "vue-markdown": "^2.2.4",
         "vue-property-decorator": "^8.4.2",
         "vue-router": "^3.4.9",
         "vuelidate": "^0.7.6",
         "vuex": "^3.4.0"
     },
     "devDependencies": {
+        "@fortawesome/free-solid-svg-icons": "^5.15.1",
+        "@fortawesome/vue-fontawesome": "^2.0.0",
+        "@types/vue-markdown": "^2.2.1",
         "@vue/cli-plugin-babel": "~4.4.0",
         "@vue/cli-plugin-router": "~4.4.0",
         "@vue/cli-plugin-typescript": "~4.4.0",

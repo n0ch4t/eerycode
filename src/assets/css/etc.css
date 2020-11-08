@@ -3,10 +3,12 @@
 }
 
 @font-face {
-    font-family: 'ibm';
+    font-family: 'witney';
     font-style: normal;
-    src: url('../font/IBMPlexSansKR-Regular.ttf');
+    font-weight: normal;
+    src: url('../font/whitneymedium.otf') format("opentype");
 }
+
 /*** basic ***/
 
 html,
@@ -21,8 +23,9 @@ body,
     margin: 0;
     background: rgb(47, 49, 54);
     color: rgb(128, 132, 137);
-    font-family: 'ibm', sans-serif;
+    font-family: 'witney', Arial, sans-serif;
 }
+
 body {
     padding: 0;
     margin: 0;
@@ -34,9 +37,20 @@ body {
     overflow-x: hidden;
 }
 
-a:link { color: red; text-decoration: none;}
-a:visited { color: black; text-decoration: none;}
-a:hover { color: blue; text-decoration: none;}
+a:link {
+    color: red;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+    text-decoration: none;
+}
 
 
 .no-drag {
@@ -46,6 +60,7 @@ a:hover { color: blue; text-decoration: none;}
     -khtml-user-select: none;
     user-select: none;
 }
+
 .img-no-drag {
     -webkit-user-drag: none;
 }
@@ -56,6 +71,7 @@ a:hover { color: blue; text-decoration: none;}
     height: 100%;
     z-index: 60;
 }
+
 .bg-img {
     width: 100%;
     object-fit: cover;
@@ -67,6 +83,7 @@ a:hover { color: blue; text-decoration: none;}
 .position-absolute {
     position: absolute !important;
 }
+
 /*** input ***/
 input {
     padding: 10px;
@@ -75,6 +92,7 @@ input {
     border-radius: 0.25rem;
     font-size: 16px;
 }
+
 input:focus {
     border: 1px solid rgb(113, 137, 218);
     outline: none;
@@ -92,6 +110,7 @@ select {
 .overflow-h {
     overflow: hidden;
 }
+
 /*** A ***/
 a {
 }
@@ -101,23 +120,27 @@ a {
     min-height: 100%;
     position: relative;
 }
+
 .content-body {
     position: relative;
     height: 100%;
     z-index: 100;
 }
+
 .popup-login {
     top: calc(50% - 194px);
     left: calc(50% - 240px);
     margin: 0 auto;
     position: absolute;
 }
+
 .popup-register {
     top: calc(50% - 263px);
     left: calc(50% - 240px);
     margin: 0 auto;
     position: absolute;
 }
+
 .popup-login-container {
     width: 480px;
     height: auto;
@@ -141,6 +164,7 @@ a {
 .l-0 {
     left: 0 !important;
 }
+
 .r-0 {
     right: 0 !important;
 }
@@ -149,9 +173,11 @@ a {
 .w-100 {
     width: 100% !important;
 }
+
 .w-120 {
     width: 120px !important;
 }
+
 .w-154 {
     width: 154px !important;
 }
@@ -159,9 +185,11 @@ a {
 .w-30-per {
     width: 25% !important;
 }
+
 .w-35-per {
     width: 35% !important;
 }
+
 .w-100-per {
     width: 100% !important;
 }
@@ -177,6 +205,7 @@ a {
 .text-center {
     text-align: center !important;
 }
+
 .text-italic {
     font-style: italic;
 }
@@ -184,12 +213,15 @@ a {
 .text-white {
     color: white !important;
 }
+
 .text-red {
     color: red !important;
 }
+
 .text-info {
     color: rgb(114, 137, 218) !important;
 }
+
 .text-cyan {
     color: #26c6da !important;
 }
@@ -201,6 +233,7 @@ a {
 .text-gray {
     color: #8f9eb5 !important;
 }
+
 .text-dark-gray {
     color: rgb(122, 122, 122);
 }
@@ -216,6 +249,7 @@ a {
 .text-purple {
     color: #6b79c4 !important;
 }
+
 .text-brown {
     color: #795548 !important;
 }
@@ -231,24 +265,31 @@ a {
 .font-weight-600 {
     font-weight: 600;
 }
+
 .font-size-13 {
     font-size: 13px !important;
 }
+
 .font-size-15 {
     font-size: 15px !important;
 }
+
 .font-size-16 {
     font-size: 16px !important;
 }
+
 .font-size-20 {
     font-size: 20px !important;
 }
+
 .font-size-24 {
     font-size: 24px !important;
 }
+
 .font-size-30 {
     font-size: 30px !important;
 }
+
 .font-size-56 {
     font-size: 56px !important;
 }
@@ -257,9 +298,11 @@ a {
 .mb-5 {
     margin-bottom: 5px !important;
 }
+
 .mb-8 {
     margin-bottom: 8px !important;
 }
+
 .mb-15 {
     margin-bottom: 15px !important;
 }
@@ -271,18 +314,23 @@ a {
 .ml-5 {
     margin-left: 5px !important;
 }
+
 .ml-13 {
     margin-left: 13px !important;
 }
+
 .ml-45 {
     margin-left: 45px !important;
 }
+
 .ml-2-per {
     margin-left: 2% !important;
 }
+
 .mr-5 {
     margin-right: 5px !important;
 }
+
 .mr-20 {
     margin-right: 20px !important;
 }
@@ -301,6 +349,7 @@ a {
     border: none;
     outline: none;
 }
+
 .btn:disabled {
     opacity: 0.5;
 }
@@ -308,14 +357,19 @@ a {
 .btn-primary {
     background-color: rgb(113, 137, 218);
 }
+
 .btn-primary:hover {
     background-color: rgb(90, 100, 200);
 }
+
 .btn-logout {
     position: absolute;
+    margin-bottom: 10px;
+    margin-left: 10%;
     bottom: 0px;
-    width: 100%;
+    width: 80%;
 }
+
 .btn-round {
     position: relative;
     margin: 1px 1px;
@@ -329,13 +383,37 @@ a {
     border: none;
     outline: none;
 }
+
 .btn-round-white {
     background-color: white;
     color: rgb(90, 100, 200);
 }
+
 .btn-round-white:hover {
     background-color: rgb(190, 194, 196);
 }
+
+/***** scroll *****/
+.scroll-1::-webkit-scrollbar {
+    width: 15px;
+    background-color: transparent;
+}
+
+.scroll-1::-webkit-scrollbar-track {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 15px 15px rgba(0, 0, 0, 0);
+    border: solid 4px rgb(55, 57, 62);
+    background-color: rgb(46, 51, 56);
+}
+
+.scroll-1::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgb(32, 34, 37) !important;
+    background-color: #2f3542;
+    background-clip: padding-box;
+    border: 4px solid transparent;
+}
+
 /*** cursor ***/
 
 .cursor-pointer {
@@ -346,9 +424,11 @@ a {
 .float-left {
     float: left;
 }
+
 .float-right {
     float: right;
 }
+
 .clear-fix:after {
     content: '';
     display: block;
@@ -368,6 +448,7 @@ a {
     animation: slide-right 120s infinite both;
     z-index: 80;
 }
+
 .home-banner {
     position: relative;
     text-align: center;
@@ -375,126 +456,17 @@ a {
     top: 200px;
     z-index: 100;
 }
+
 .home-banner-top {
     font-size: 56px;
 }
+
 .home-banner-desc {
     font-size: 16px;
 }
+
 .popup-home {
     display: none;
-}
-
-.channel-box {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: stretch;
-    align-content: stretch;
-    width: 100%;
-    height: 100%;
-}
-.guild-nav {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: stretch;
-    align-content: stretch;
-    width: 72px !important;
-    background-color: rgb(32, 34, 37);
-}
-.guild-nav-item {
-
-}
-.guild-nav-icon {
-    width: 100%;
-    height: auto;
-    padding: 10px;
-    border-radius: 2rem;
-}
-.channel-nav {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: stretch;
-    align-content: stretch;
-    width: 240px !important;
-    height: 100% !important;
-    background: rgb(47, 49, 54);
-}
-.channel-nav-top {
-    height: 48px;
-    text-align: left;
-    padding: 14px 16px;
-    color: white;
-    font-size: 16px;
-    border-bottom: 1px solid rgb(36, 41, 47);
-}
-.channel-nav-content {
-    padding: 5px;
-}
-.channel-nav-name {
-    padding: 5px;
-    border-radius: 0.25rem;
-    text-align: left;
-}
-.channel-nav-name:hover {
-    background: rgb(55, 58, 62);
-}
-
-.channel-nav-select {
-    background: rgb(66, 69, 66) !important;
-}
-
-.chat-box {
-    overflow: hidden;
-    width: 100% !important;
-    min-width: 300px;
-    height: 100%;
-    background: rgb(55, 57, 62);
-}
-.chat-logo {
-    width: 40px !important;
-    height: 40px !important;
-    border-radius: 2rem;
-}
-.chat-box-top {
-    top: 0;
-    width: 100%;
-    height: 48px !important;
-    border-bottom: 1px solid rgb(44, 45, 49);
-}
-.chat-box-title {
-    padding: 15px;
-}
-
-.chat-box-content {
-    padding-top: 10px;
-    height: calc(100% - 109px) !important;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-.input-chat-box {
-    bottom: 0;
-    padding: 10px;
-    width: 100%;
-}
-.chat-id {
-    display: flex;
-    justify-content: left;
-    padding-left: 20px;
-}
-.chat-id:hover {
-    background-color: rgb(50, 53, 59);
-}
-.input-chat {
-    width: 100%;
-    color: white;
 }
 
 /*
@@ -505,9 +477,11 @@ a {
 .bounce-enter-active {
     animation: bounce-in-top 0.5s;
 }
+
 .bounce-leave-to {
     animation: slide-out-top 0.5s;
 }
+
 .loading-leave-to {
     animation: fade-out 1s;
 }
@@ -526,6 +500,7 @@ a {
 .fade-leave-active {
     opacity: 0;
 }
+
 /*** animation ***/
 @keyframes bounce-in-top {
     0% {
@@ -619,12 +594,14 @@ a {
         margin: 0 auto;
         position: absolute;
     }
+
     .popup-register {
         top: calc(50% - 263px);
         left: calc(50% - 200px);
         margin: 0 auto;
         position: absolute;
     }
+
     .popup-login-container {
         width: 400px;
         height: auto;
@@ -632,27 +609,15 @@ a {
         background: rgb(54, 57, 63);
         border-radius: 0.25rem;
     }
+
     .home-banner-top {
         font-size: 40px;
     }
+
     .popup-home {
         display: block;
     }
-    .guild-nav {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        align-items: stretch;
-        align-content: stretch;
-        width: 10px !important;
-    }
-    .guild-nav-icon {
-        width: 10px !important;
-    }
-    .channel-nav {
-        width: 50px !important;
-    }
+
     .account-logo-text {
         visibility: hidden;
     }
@@ -665,12 +630,14 @@ a {
         margin: 0 auto;
         position: absolute;
     }
+
     .popup-register {
         top: 0;
         left: 0;
         margin: 0 auto;
         position: absolute;
     }
+
     .popup-login-container {
         width: 100%;
         height: 100%;
@@ -679,14 +646,9 @@ a {
         background: rgb(54, 57, 63);
         border-radius: 0.25rem;
     }
+
     .home-banner-top {
         font-size: 35px;
-    }
-    .guild-nav {
-        width: 10px !important;
-    }
-    .channel-nav {
-        width: 50px !important;
     }
 }
 
@@ -710,6 +672,7 @@ a {
         transform: rotate(360deg);
     }
 }
+
 @keyframes rotate-center {
     0% {
         -webkit-transform: rotate(0);
@@ -734,6 +697,7 @@ a {
         opacity: 0;
     }
 }
+
 @keyframes fade-out {
     0% {
         opacity: 1;
@@ -748,7 +712,7 @@ a {
     display: inline-block;
     width: 50px;
     height: 50px;
-    border: 3px solid rgba(255,255,255,.3);
+    border: 3px solid rgba(255, 255, 255, .3);
     border-radius: 50%;
     border-top-color: #fff;
     animation: spin 1s ease-in-out infinite;
@@ -756,8 +720,13 @@ a {
 }
 
 @keyframes spin {
-    to { -webkit-transform: rotate(360deg); }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
 }
+
 @-webkit-keyframes spin {
-    to { -webkit-transform: rotate(360deg); }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
 }
