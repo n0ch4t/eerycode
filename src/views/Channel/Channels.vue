@@ -25,7 +25,9 @@
               class="channel-nav-name text-gray text-ellipsis"
               v-bind:class="{ 'channel-nav-select': currentRoom == 1 }"
               v-on:click="goChannel('1')"
-          ># 1번-채널
+          >
+            <font-awesome-icon icon="hashtag"/>
+            1번-채널
           </div>
         </div>
         <div class="channel-nav-content">
@@ -33,7 +35,9 @@
               class="channel-nav-name text-gray text-ellipsis"
               v-bind:class="{ 'channel-nav-select': currentRoom == 2 }"
               v-on:click="goChannel('2')"
-          ># 2번-채널
+          >
+            <font-awesome-icon icon="hashtag"/>
+            2번-채널
           </div
           >
         </div>
@@ -44,11 +48,20 @@
         <div class="chat-box-top">
           <div class="font-size-20 chat-box-title"
           >
-            <font-awesome-icon class="font-size-20 mr-20 nav-menu-btn" icon="bars"
-                               v-on:click.prevent.stop="isShowMenu = !isShowMenu"/>
-            # <span class="text-white font-size-20 font-weight-600">{{ this.currentRoom }}번-채널</span
-          ><span class="ml-13 font-size-20">| 공 지 같 은 것</span></div
-          >
+            <div class="left-title">
+              <font-awesome-icon class="font-size-20 mr-20 nav-menu-btn" icon="bars"
+                                 v-on:click.prevent.stop="isShowMenu = !isShowMenu"/>
+              <font-awesome-icon icon="hashtag"/>
+              <span class="text-white font-size-20 font-weight-600"> {{ this.currentRoom }}번-채널</span>
+              <span class="ml-13 font-size-20">| 공 지 같 은 것</span>
+            </div>
+            <div class="right-title">
+              <div class="people-btn">
+                <font-awesome-icon class="font-size-20 nav-people-btn" icon="user"
+                                   v-on:click.prevent.stop="true"/>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="chat-box-content scroll-1" ref="ChatBox" v-on:scroll="chatScroll">
           <div class="text-center">
@@ -72,14 +85,12 @@
         </div>
         <div class="input-chat-box">
           <div class="input-chat-wrap">
-            <label>
               <textarea
                   class="input-chat scroll-1 "
                   v-model="msg"
                   v-on:keypress.enter.prevent.stop="sendMessage"
                   placeholder="#... 메시지 보내기"
               />
-            </label>
             <button class="msg-send-button" v-on:click="sendMessage">
               <font-awesome-icon icon="paper-plane"/>
             </button>
@@ -87,7 +98,7 @@
         </div>
       </div>
       <div class="user-box">
-        <div class="member-group">online - {{onlineMember.length}}</div>
+        <div class="member-group">online - {{ onlineMember.length }}</div>
         <div class="member-container">
           <div class="member-card" v-for="mem in onlineMember">
             <div class="member-avartar"><img v-bind:src="mem.picture" class="avartar-img"></div>
@@ -100,7 +111,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Ref, Watch } from 'vue-property-decorator';
+import { Vue, Component, Ref } from 'vue-property-decorator';
 
 @Component
 export default class Channels extends Vue {
@@ -119,6 +130,7 @@ export default class Channels extends Vue {
   private apiURL: string = process.env.VUE_APP_AG_API_URL || 'localhost';
   private isShowMenu: boolean = false;
   private onlineMember: any[] = [];
+  private onlineMemberInterval: any;
 
   get logo() {
     return require('../../assets/img/pusheen.jpg');
@@ -145,17 +157,19 @@ export default class Channels extends Vue {
   }
 
   private isMember(): void {
-    this.$axios.get('/api/ismember').then((rs: any) => {
-      if (rs.data !== null) {
-        const tempMember: any = [];
-        for (const element of rs.data) {
-          if (!tempMember.some((e: any) => e.email === element.email)) {
-            tempMember.push(element);
+    this.onlineMemberInterval = setTimeout(() => {
+      this.$axios.get('/api/ismember').then((rs: any) => {
+        if (rs.data !== null) {
+          const tempMember: any = [];
+          for (const element of rs.data) {
+            if (!tempMember.some((e: any) => e.email === element.email)) {
+              tempMember.push(element);
+            }
           }
+          this.onlineMember = tempMember;
         }
-        this.onlineMember = tempMember;
-      }
-    });
+      });
+    }, 3000);
   }
 
   private isOnlineMember(): void {
@@ -219,6 +233,7 @@ export default class Channels extends Vue {
 
   private goChannel(num: string): void {
     this.socket.close();
+    clearInterval(this.onlineMemberInterval);
     if (num === this.currentRoom) {
       return;
     }
@@ -263,6 +278,9 @@ export default class Channels extends Vue {
       this.$router.replace('/');
       return;
     };
+
+    // this.socket.onclose = () => {
+    // };
   }
 
   private sendMessage(e: any): void {
@@ -340,8 +358,9 @@ export default class Channels extends Vue {
     return returnDate;
   }
 
-  private hideURLBar(): void {
-    window.scrollTo(0, 1);
+  private beforeDestroy(): void {
+    clearInterval(this.onlineMemberInterval);
+    this.socket.close();
   }
 }
 </script>
@@ -458,7 +477,32 @@ export default class Channels extends Vue {
 }
 
 .chat-box-title {
+  position: relative;
+  height: 100%;
+}
+
+.left-title {
+  height: 100%;
   padding: 15px;
+  width: calc(100% - 30px);
+  position: absolute;
+  left: 0
+}
+
+.right-title {
+  width: 30px;
+  height: 100%;
+  padding: 15px;
+  position: absolute;
+  right: 0
+}
+
+.people-btn {
+  position: absolute;
+  right: 0;
+  height: 40px !important;
+  width: 40px !important;
+  font-size: 20px;
 }
 
 .chat-box-content {
@@ -475,6 +519,8 @@ export default class Channels extends Vue {
 }
 
 .input-chat-wrap {
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 34px !important;
   padding: 8px !important;
@@ -485,7 +531,7 @@ export default class Channels extends Vue {
 .input-chat {
   margin-left: 5px;
   width: calc(100% - 50px) !important;
-  height: 22px;
+  height: 20px;
   font-size: 14px;
   color: white !important;
   border: none !important;
@@ -493,12 +539,16 @@ export default class Channels extends Vue {
   resize: none;
 }
 
+.input-chat::placeholder {
+  font-size: 14px;
+}
+
 .input-chat:focus {
   outline: none;
 }
 
 .msg-send-button {
-  position: fixed;
+  position: relative;
   margin-top: -3px;
   background: none !important;
   border: none !important;
@@ -579,7 +629,7 @@ export default class Channels extends Vue {
 
 /*** media query ***/
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .nav-menu-btn {
     display: inline-block !important;
   }
