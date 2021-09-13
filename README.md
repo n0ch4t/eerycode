@@ -1,6 +1,6 @@
 
 #EERYCODE
 
-http://www.eerycode.com
+http://www.takerlook.com
 
 ![eerycode](./eerycode.gif)
