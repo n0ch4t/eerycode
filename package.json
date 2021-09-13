@@ -11,7 +11,7 @@
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@types/vuelidate": "^0.7.13",
-        "axios": "^0.19.2",
+        "axios": "^0.21.2",
         "core-js": "^3.6.5",
         "v-tooltip": "^2.0.3",
         "vue": "^2.6.12",
